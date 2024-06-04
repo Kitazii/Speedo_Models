@@ -1,0 +1,79 @@
+﻿@model K_Burns_GU2_Speedo_Models.Models.ViewModels.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<main aria-labelledby="title">
+    <h2 class="text-center" id="title">@ViewBag.Title.</h2>
+    <h4 class="text-center">Create a new account.</h4>
+
+    <hr />
+
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+
+<div class="ms-4">
+
+
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="row">
+        @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 col-form-label fw-bold" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 col-form-label fw-bold" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        @Html.LabelFor(m => m.Street, new { @class = "col-md-2 col-form-label fw-bold" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Street, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        @Html.LabelFor(m => m.City, new { @class = "col-md-2 col-form-label fw-bold" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        @Html.LabelFor(m => m.Postcode, new { @class = "col-md-2 col-form-label fw-bold" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Postcode, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 col-form-label fw-bold" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 col-form-label fw-bold" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 col-form-label fw-bold" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="offset-md-2 col-md-10">
+            <input type="submit" value="Register" class="btn btn-outline-dark" />
+        </div>
+    </div>
+</div>
+    }
+</main>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,37 @@
+﻿@model K_Burns_GU2_Speedo_Models.Models.User
+
+@{
+    ViewBag.Title = "Email Confirmation";
+
+    int index = Model.Email.IndexOf("@");
+    string mailDomain = Model.Email.Substring(index + 1).ToLower();
+    // Generate the URL to the email provider's login page
+    string emailProviderUrl = GetEmailProviderUrl(mailDomain);
+}
+
+<h2 id="title">@ViewBag.Title.</h2>
+<div>
+    <p>
+        <a href="@emailProviderUrl" target="_blank">Please check your email and confirm you email address</a>
+    </p>
+</div>
+
+
+@functions{
+    private string GetEmailProviderUrl(string domain)
+    {
+        switch (domain)
+        {
+            case "gmail.com":
+                return "https://mail.google.com";
+            case "yahoo.com":
+                return "https://mail.yahoo.com";
+            case "outlook.com":
+            case "hotmail.com":
+            case "live.com":
+                return "https://outlook.live.com";
+            default:
+                return "http://www." + domain; // Default case if the email provider is not explicitly handled
+        }
+    }
+}

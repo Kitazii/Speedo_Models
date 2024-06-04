@@ -1,0 +1,35 @@
+﻿@model K_Burns_GU2_Speedo_Models.Models.ViewModels.VerifyPhoneNumberViewModel
+@{
+    ViewBag.Title = "Verify Phone Number";
+}
+
+<main aria-labelledby="title">
+    <h2 class="text-center" id="title">@ViewBag.Title.</h2>
+
+    @using (Html.BeginForm("VerifyPhoneNumber", "Manage", FormMethod.Post, new { role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("phoneNumber", @Model.PhoneNumber)
+        <h4 class="text-center">Enter verification code</h4>
+        <h5 class="text-center">@ViewBag.Status</h5>
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="ms-4">
+            <div class="row">
+                @Html.LabelFor(m => m.Code, new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Code, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="offset-md-2 col-md-10">
+                    <input type="submit" class="btn btn-outline-dark" value="Submit" />
+                </div>
+            </div>
+        </div>
+    }
+</main>    
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

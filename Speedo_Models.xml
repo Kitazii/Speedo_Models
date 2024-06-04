@@ -1,0 +1,1649 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>K_Burns_GU2_Speedo_Models</name>
+    </assembly>
+    <members>
+        <member name="T:K_Burns_GU2_Speedo_Models.BundleConfig">
+            <summary>
+            Registers all the script and style bundles for the application.
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.BundleConfig.RegisterBundles(System.Web.Optimization.BundleCollection)">
+            <summary>
+            Registers the script and style bundles.
+            </summary>
+            <param name="bundles">The bundle collection to which the bundles will be added.</param>
+            <remarks>
+            For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
+            </remarks>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.FilterConfig">
+            <summary>
+            Configures the global filters for the application.
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.FilterConfig.RegisterGlobalFilters(System.Web.Mvc.GlobalFilterCollection)">
+            <summary>
+            Registers the global filters for the application.
+            </summary>
+            <param name="filters">The global filter collection to which filters will be added.</param>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.EmailService">
+            <summary>
+            Provides email services for sending emails.
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.EmailService.SendAsync(Microsoft.AspNet.Identity.IdentityMessage)">
+            <summary>
+            Sends an asynchronous email message.
+            </summary>
+            <param name="message">The message to be sent.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.EmailService.configSendGridasync(Microsoft.AspNet.Identity.IdentityMessage)">
+            <summary>
+            Configures and sends an email message using SendGrid.
+            </summary>
+            <param name="message">The message to be sent.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.SmsService">
+            <summary>
+            Provides SMS services for sending text messages.
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.SmsService.SendAsync(Microsoft.AspNet.Identity.IdentityMessage)">
+            <summary>
+            Sends an asynchronous SMS message.
+            </summary>
+            <param name="message">The message to be sent.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.ApplicationUserManager">
+            <summary>
+            Configures the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.ApplicationUserManager.#ctor(Microsoft.AspNet.Identity.IUserStore{K_Burns_GU2_Speedo_Models.Models.User})">
+            <summary>
+            Initializes a new instance of the <see cref="T:K_Burns_GU2_Speedo_Models.ApplicationUserManager"/> class.
+            </summary>
+            <param name="store">The user store.</param>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.ApplicationUserManager.Create(Microsoft.AspNet.Identity.Owin.IdentityFactoryOptions{K_Burns_GU2_Speedo_Models.ApplicationUserManager},Microsoft.Owin.IOwinContext)">
+            <summary>
+            Creates an instance of the <see cref="T:K_Burns_GU2_Speedo_Models.ApplicationUserManager"/>.
+            </summary>
+            <param name="options">The identity factory options.</param>
+            <param name="context">The OWIN context.</param>
+            <returns>An instance of <see cref="T:K_Burns_GU2_Speedo_Models.ApplicationUserManager"/>.</returns>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.ApplicationSignInManager">
+            <summary>
+            Configures the application sign-in manager used in this application.
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.ApplicationSignInManager.#ctor(K_Burns_GU2_Speedo_Models.ApplicationUserManager,Microsoft.Owin.Security.IAuthenticationManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:K_Burns_GU2_Speedo_Models.ApplicationSignInManager"/> class.
+            </summary>
+            <param name="userManager">The user manager.</param>
+            <param name="authenticationManager">The authentication manager.</param>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.ApplicationSignInManager.CreateUserIdentityAsync(K_Burns_GU2_Speedo_Models.Models.User)">
+            <summary>
+            Creates a claims identity for the user.
+            </summary>
+            <param name="user">The user.</param>
+            <returns>A task that represents the asynchronous operation. The task result contains the claims identity for the user.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.ApplicationSignInManager.Create(Microsoft.AspNet.Identity.Owin.IdentityFactoryOptions{K_Burns_GU2_Speedo_Models.ApplicationSignInManager},Microsoft.Owin.IOwinContext)">
+            <summary>
+            Creates an instance of the <see cref="T:K_Burns_GU2_Speedo_Models.ApplicationSignInManager"/>.
+            </summary>
+            <param name="options">The identity factory options.</param>
+            <param name="context">The OWIN context.</param>
+            <returns>An instance of <see cref="T:K_Burns_GU2_Speedo_Models.ApplicationSignInManager"/>.</returns>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.RouteConfig">
+            <summary>
+            Configures the route mappings for the application.
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.RouteConfig.RegisterRoutes(System.Web.Routing.RouteCollection)">
+            <summary>
+            Registers the routes for the application.
+            </summary>
+            <param name="routes">The route collection to which the routes will be added.</param>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Startup">
+            <summary>
+            Configures authentication for the application.
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Startup.ConfigureAuth(Owin.IAppBuilder)">
+            <summary>
+            Configures authentication middleware for the application.
+            </summary>
+            <param name="app">The IAppBuilder interface for configuring the OWIN pipeline.</param>
+            <remarks>
+            For more information on configuring authentication, please visit https://go.microsoft.com/fwlink/?LinkId=301864
+            </remarks>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Startup.Configuration(Owin.IAppBuilder)">
+            <summary>
+            Configures the application.
+            </summary>
+            <param name="app">The application builder.</param>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Controllers.AccountController">
+            <summary>
+            Manages account-related actions such as login, registration, password reset, and external logins.
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AccountController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:K_Burns_GU2_Speedo_Models.Controllers.AccountController"/> class.
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AccountController.#ctor(K_Burns_GU2_Speedo_Models.ApplicationUserManager,K_Burns_GU2_Speedo_Models.ApplicationSignInManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:K_Burns_GU2_Speedo_Models.Controllers.AccountController"/> class with specified user and sign-in managers.
+            </summary>
+            <param name="userManager">The user manager.</param>
+            <param name="signInManager">The sign-in manager.</param>
+        </member>
+        <member name="P:K_Burns_GU2_Speedo_Models.Controllers.AccountController.SignInManager">
+            <summary>
+            Gets or sets the sign-in manager.
+            </summary>
+        </member>
+        <member name="P:K_Burns_GU2_Speedo_Models.Controllers.AccountController.UserManager">
+            <summary>
+            Gets or sets the user manager.
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AccountController.Login(System.String)">
+            <summary>
+            GET: /Account/Login
+            
+            Displays the login page.
+            </summary>
+            <param name="returnUrl">The return URL.</param>
+            <returns>The login view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AccountController.Login(K_Burns_GU2_Speedo_Models.Models.ViewModels.LoginViewModel,System.String)">
+            <summary>
+            POST: /Account/Login
+            
+            Processes the login request.
+            </summary>
+            <param name="model">The login view model.</param>
+            <param name="returnUrl">The return URL.</param>
+            <returns>The appropriate action result based on the login outcome.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AccountController.VerifyCode(System.String,System.String,System.Boolean)">
+            <summary>
+            GET: /Account/VerifyCode
+            
+            Displays the verify code page for two-factor authentication.
+            </summary>
+            <param name="provider">The provider.</param>
+            <param name="returnUrl">The return URL.</param>
+            <param name="rememberMe">Whether to remember the login.</param>
+            <returns>The verify code view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AccountController.VerifyCode(K_Burns_GU2_Speedo_Models.Models.ViewModels.VerifyCodeViewModel)">
+            <summary>
+            POST: /Account/VerifyCode
+            
+            Verifies the code for two-factor authentication.
+            </summary>
+            <param name="model">The verify code view model.</param>
+            <returns>The appropriate action result based on the verification outcome.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AccountController.Register">
+            <summary>
+            GET: /Account/Register
+            
+            Displays the registration page.
+            </summary>
+            <returns>The register view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AccountController.Register(K_Burns_GU2_Speedo_Models.Models.ViewModels.RegisterViewModel)">
+            <summary>
+            POST: /Account/Register
+            
+            Processes the registration request.
+            </summary>
+            <param name="model">The register view model.</param>
+            <returns>The appropriate action result based on the registration outcome.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AccountController.ConfirmEmail(System.String,System.String)">
+            <summary>
+            GET: /Account/ConfirmEmail
+            
+            Confirms the user's email address.
+            </summary>
+            <param name="userId">The user ID.</param>
+            <param name="code">The confirmation code.</param>
+            <returns>The appropriate view based on the confirmation outcome.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AccountController.ForgotPassword">
+            <summary>
+            GET: /Account/ForgotPassword
+            
+            Displays the forgot password page.
+            </summary>
+            <returns>The forgot password view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AccountController.ForgotPassword(K_Burns_GU2_Speedo_Models.Models.ViewModels.ForgotPasswordViewModel)">
+            <summary>
+            POST: /Account/ForgotPassword
+            
+            Processes the forgot password request.
+            </summary>
+            <param name="model">The forgot password view model.</param>
+            <returns>The appropriate action result based on the forgot password outcome.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AccountController.ForgotPasswordConfirmation">
+            <summary>
+            GET: /Account/ForgotPasswordConfirmation
+            
+            Displays the forgot password confirmation page.
+            </summary>
+            <returns>The forgot password confirmation view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AccountController.ResetPassword(System.String)">
+            <summary>
+            GET: /Account/ResetPassword
+            
+            Displays the reset password page.
+            </summary>
+            <param name="code">The reset code.</param>
+            <returns>The reset password view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AccountController.ResetPassword(K_Burns_GU2_Speedo_Models.Models.ViewModels.ResetPasswordViewModel)">
+            <summary>
+            POST: /Account/ResetPassword
+            
+            Processes the reset password request.
+            </summary>
+            <param name="model">The reset password view model.</param>
+            <returns>The appropriate action result based on the reset password outcome.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AccountController.ResetPasswordConfirmation">
+            <summary>
+            GET: /Account/ResetPasswordConfirmation
+            
+            Displays the reset password confirmation page.
+            </summary>
+            <returns>The reset password confirmation view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AccountController.ExternalLogin(System.String,System.String)">
+            <summary>
+            POST: /Account/ExternalLogin
+            
+            Initiates the process for external login.
+            </summary>
+            <param name="provider">The external login provider.</param>
+            <param name="returnUrl">The return URL.</param>
+            <returns>A challenge result for the external login provider.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AccountController.SendCode(System.String,System.Boolean)">
+            <summary>
+            GET: /Account/SendCode
+            
+            Displays the send code page for two-factor authentication.
+            </summary>
+            <param name="returnUrl">The return URL.</param>
+            <param name="rememberMe">Whether to remember the login.</param>
+            <returns>The send code view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AccountController.SendCode(K_Burns_GU2_Speedo_Models.Models.ViewModels.SendCodeViewModel)">
+            <summary>
+            POST: /Account/SendCode
+            
+            Sends a two-factor authentication code.
+            </summary>
+            <param name="model">The send code view model.</param>
+            <returns>The appropriate action result based on the send code outcome.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AccountController.ExternalLoginCallback(System.String)">
+            <summary>
+            GET: /Account/ExternalLoginCallback
+            
+            Handles the callback after external login.
+            </summary>
+            <param name="returnUrl">The return URL.</param>
+            <returns>The appropriate action result based on the external login outcome.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AccountController.ExternalLoginConfirmation(K_Burns_GU2_Speedo_Models.Models.ViewModels.ExternalLoginConfirmationViewModel,System.String)">
+            <summary>
+            POST: /Account/ExternalLoginConfirmation
+            
+            Confirms the external login.
+            </summary>
+            <param name="model">The external login confirmation view model.</param>
+            <param name="returnUrl">The return URL.</param>
+            <returns>The appropriate action result based on the external login confirmation outcome.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AccountController.LogOff">
+            <summary>
+            POST: /Account/LogOff
+            
+            Logs off the current user.
+            </summary>
+            <returns>Redirects to the home page after logging off.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AccountController.ExternalLoginFailure">
+            <summary>
+            GET: /Account/ExternalLoginFailure
+            
+            Displays the external login failure page.
+            </summary>
+            <returns>The external login failure view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AccountController.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources and optionally releases the managed resources.
+            </summary>
+            <param name="disposing">A boolean value indicating whether to release both managed and unmanaged resources or only unmanaged resources.</param>
+        </member>
+        <member name="P:K_Burns_GU2_Speedo_Models.Controllers.AccountController.AuthenticationManager">
+            <summary>
+            Gets the authentication manager.
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AccountController.AddErrors(Microsoft.AspNet.Identity.IdentityResult)">
+            <summary>
+            Adds the specified errors to the model state.
+            </summary>
+            <param name="result">The identity result containing the errors.</param>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AccountController.RedirectToLocal(System.String)">
+            <summary>
+            Redirects to a local URL if it is local; otherwise, redirects to the home page.
+            </summary>
+            <param name="returnUrl">The return URL.</param>
+            <returns>The redirect action result.</returns>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Controllers.AccountController.ChallengeResult">
+            <summary>
+            Represents a challenge result for external login.
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AccountController.ChallengeResult.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:K_Burns_GU2_Speedo_Models.Controllers.AccountController.ChallengeResult"/> class.
+            </summary>
+            <param name="provider">The login provider.</param>
+            <param name="redirectUri">The redirect URI.</param>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AccountController.ChallengeResult.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:K_Burns_GU2_Speedo_Models.Controllers.AccountController.ChallengeResult"/> class.
+            </summary>
+            <param name="provider">The login provider.</param>
+            <param name="redirectUri">The redirect URI.</param>
+            <param name="userId">The user ID.</param>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AccountController.ChallengeResult.ExecuteResult(System.Web.Mvc.ControllerContext)">
+            <summary>
+            Executes the result by issuing a challenge.
+            </summary>
+            <param name="context">The controller context.</param>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Controllers.AdminController">
+            <summary>
+            Only allows admin to have authority to use this controller
+            and redirects to the main page if the user is already logged in.
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AdminController.#ctor">
+            <summary>
+            Creates a parameterless constructor, calling the parent constructor.
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AdminController.#ctor(K_Burns_GU2_Speedo_Models.ApplicationUserManager,K_Burns_GU2_Speedo_Models.ApplicationSignInManager)">
+            <summary>
+            Creates a constructor with 2 arguments, calling the parent constructor.
+            </summary>
+            <param name="userManager">The user manager.</param>
+            <param name="signInManager">The sign-in manager.</param>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AdminController.CreateEmployee">
+            <summary>
+            Displays the Create Employee view.
+            </summary>
+            <returns>The Create Employee view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AdminController.CreateEmployee(K_Burns_GU2_Speedo_Models.Models.ViewModels.CreateEmployeeViewModel)">
+            <summary>
+            Processes the creation of a new employee.
+            </summary>
+            <param name="model">The CreateEmployeeViewModel containing the employee details.</param>
+            <returns>Redirects to ManageEmployees view if successful; otherwise, returns the CreateEmployee view with the model.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AdminController.ManageEmployees(System.Nullable{System.Boolean})">
+            <summary>
+            Manages registered employees.
+            </summary>
+            <param name="redirected">Indicates if the user was redirected due to an unauthorized action.</param>
+            <returns>The ManageEmployees view with the list of users.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AdminController.DeleteUser(System.String,System.Nullable{System.Boolean})">
+            <summary>
+            Deletes a user based on the provided user ID.
+            </summary>
+            <param name="userId">The ID of the user to be deleted.</param>
+            <param name="isCustomer">Indicates if the user is a customer.</param>
+            <returns>The DeleteUser view if the user exists; otherwise, redirects to the appropriate view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AdminController.DeleteUserConfirmed(System.String)">
+            <summary>
+            Confirms the deletion of a user.
+            </summary>
+            <param name="userId">The ID of the user to be deleted.</param>
+            <returns>Redirects to the appropriate view based on the user type.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AdminController.EditUser(System.String)">
+            <summary>
+            Retrieves the details of a user for editing.
+            </summary>
+            <param name="userId">The ID of the user to be edited.</param>
+            <returns>The EditUser view with the user's details.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AdminController.EditUserConfirmed(System.String,K_Burns_GU2_Speedo_Models.Models.ViewModels.EditUserViewModel)">
+            <summary>
+            Confirms the edits made to a user's details.
+            </summary>
+            <param name="userId">The ID of the user being edited.</param>
+            <param name="model">The EditUserViewModel containing the updated details.</param>
+            <returns>Redirects to the appropriate view based on the user type.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.AdminController.UserDetails(System.String)">
+            <summary>
+            Retrieves the details of a user.
+            </summary>
+            <param name="userId">The ID of the user.</param>
+            <returns>The UserDetails view with the user's details.</returns>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Controllers.CheckoutController">
+            <summary>
+            The custom filter redirects user to the home/index if they are logged in but not a customer
+            
+            Handles the checkout process and basket management for customers.
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.CheckoutController.Checkout(System.Nullable{System.Boolean})">
+            <summary>
+            Displays the checkout page for the user, including their basket and shipping information.
+            </summary>
+            <param name="reloaded">Indicates if the page was reloaded due to missing shipping details.</param>
+            <returns>The checkout view with the basket and shipping information.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.CheckoutController.IncrementCheckout(System.String)">
+            <summary>
+            Increments the quantity of a basket item during checkout.
+            </summary>
+            <param name="BasketItemId">The ID of the basket item to increment.</param>
+            <returns>Redirects to the checkout view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.CheckoutController.DecrementCheckout(System.String)">
+            <summary>
+            Decrements the quantity of a basket item during checkout.
+            </summary>
+            <param name="BasketItemId">The ID of the basket item to decrement.</param>
+            <returns>Redirects to the checkout view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.CheckoutController.RemoveItem(System.String)">
+            <summary>
+            Removes an item from the basket during checkout.
+            </summary>
+            <param name="BasketItemId">The ID of the basket item to remove.</param>
+            <returns>Redirects to the checkout view or shows the basket is empty view if no items are left.</returns>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Controllers.CustomerController">
+             <summary>
+             only allow Customer to have authority to use this controller
+            and redirect to main page if user is already logged in
+            
+             Handles customer-specific actions such as viewing invoices and returning orders.
+             </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.CustomerController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:K_Burns_GU2_Speedo_Models.Controllers.CustomerController"/> class.
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.CustomerController.#ctor(K_Burns_GU2_Speedo_Models.ApplicationUserManager,K_Burns_GU2_Speedo_Models.ApplicationSignInManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:K_Burns_GU2_Speedo_Models.Controllers.CustomerController"/> class with specified user and sign-in managers.
+            </summary>
+            <param name="userManager">The user manager.</param>
+            <param name="signInManager">The sign-in manager.</param>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.CustomerController.MyInvoices">
+            <summary>
+            Displays the list of invoices for the logged-in customer.
+            </summary>
+            <returns>The view containing the list of invoices.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.CustomerController.InvoiceView(System.Nullable{System.Int32})">
+            <summary>
+            Displays the details of a specific invoice.
+            </summary>
+            <param name="invoiceId">The ID of the invoice to view.</param>
+            <returns>The view containing the invoice details.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.CustomerController.ReturnOrder">
+            <summary>
+            Displays the return order page.
+            </summary>
+            <returns>The return order view.</returns>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Controllers.HomeController">
+            <summary>
+            Handles the home, about, and contact pages of the application.
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.HomeController.Index">
+            <summary>
+            Displays the home page.
+            </summary>
+            <returns>The home page view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.HomeController.About">
+            <summary>
+            Displays the about page.
+            </summary>
+            <returns>The about page view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.HomeController.Contact">
+            <summary>
+            Displays the contact page.
+            </summary>
+            <returns>The contact page view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.HomeController.SplashScreen">
+            <summary>
+            Displays Tutorial Splash Screen.
+            </summary>
+            <returns>The Splash Screen page view.</returns>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Controllers.ManageController">
+            <summary>
+            Manages user account settings and security features.
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ManageController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:K_Burns_GU2_Speedo_Models.Controllers.ManageController"/> class.
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ManageController.#ctor(K_Burns_GU2_Speedo_Models.ApplicationUserManager,K_Burns_GU2_Speedo_Models.ApplicationSignInManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:K_Burns_GU2_Speedo_Models.Controllers.ManageController"/> class with specified user and sign-in managers.
+            </summary>
+            <param name="userManager">The user manager.</param>
+            <param name="signInManager">The sign-in manager.</param>
+        </member>
+        <member name="P:K_Burns_GU2_Speedo_Models.Controllers.ManageController.SignInManager">
+            <summary>
+            Gets the sign-in manager instance.
+            </summary>
+        </member>
+        <member name="P:K_Burns_GU2_Speedo_Models.Controllers.ManageController.UserManager">
+            <summary>
+            Gets the user manager instance.
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ManageController.Index(System.Nullable{K_Burns_GU2_Speedo_Models.Controllers.ManageController.ManageMessageId})">
+            <summary>
+            GET: /Manage/Index
+            
+            Displays the index page with user account settings.
+            </summary>
+            <param name="message">The manage message ID.</param>
+            <returns>The index view with user account settings.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ManageController.RemoveLogin(System.String,System.String)">
+            <summary>
+            POST: /Manage/RemoveLogin
+            
+            Removes an external login.
+            </summary>
+            <param name="loginProvider">The login provider.</param>
+            <param name="providerKey">The provider key.</param>
+            <returns>Redirects to the manage logins view with a message.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ManageController.AddPhoneNumber">
+            <summary>
+            GET: /Manage/AddPhoneNumber
+            
+            Displays the add phone number page.
+            </summary>
+            <returns>The add phone number view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ManageController.AddPhoneNumber(K_Burns_GU2_Speedo_Models.Models.ViewModels.AddPhoneNumberViewModel)">
+            <summary>
+            POST: /Manage/AddPhoneNumber
+            
+            Adds a phone number to the user account.
+            </summary>
+            <param name="model">The add phone number view model.</param>
+            <returns>Redirects to verify phone number view if successful, otherwise redisplays the add phone number view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ManageController.EnableTwoFactorAuthentication">
+            <summary>
+            POST: /Manage/EnableTwoFactorAuthentication
+            
+            Enables two-factor authentication for the user account.
+            </summary>
+            <returns>Redirects to the index view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ManageController.DisableTwoFactorAuthentication">
+            <summary>
+            POST: /Manage/DisableTwoFactorAuthentication
+            
+            Disables two-factor authentication for the user account.
+            </summary>
+            <returns>Redirects to the index view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ManageController.VerifyPhoneNumber(System.String)">
+            <summary>
+            GET: /Manage/VerifyPhoneNumber
+            
+            Displays the verify phone number page.
+            </summary>
+            <param name="phoneNumber">The phone number to verify.</param>
+            <returns>The verify phone number view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ManageController.VerifyPhoneNumber(K_Burns_GU2_Speedo_Models.Models.ViewModels.VerifyPhoneNumberViewModel)">
+            <summary>
+            POST: /Manage/VerifyPhoneNumber
+            
+            Verifies the phone number.
+            </summary>
+            <param name="model">The verify phone number view model.</param>
+            <returns>Redirects to the index view if successful, otherwise redisplays the verify phone number view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ManageController.RemovePhoneNumber">
+            <summary>
+            POST: /Manage/RemovePhoneNumber
+            
+            Removes the phone number from the user account.
+            </summary>
+            <returns>Redirects to the index view with a message.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ManageController.ChangePassword">
+            <summary>
+            GET: /Manage/ChangePassword
+            
+            Displays the change password page.
+            </summary>
+            <returns>The change password view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ManageController.ChangePassword(K_Burns_GU2_Speedo_Models.Models.ViewModels.ChangePasswordViewModel)">
+            <summary>
+            POST: /Manage/ChangePassword
+            
+            Changes the user password.
+            </summary>
+            <param name="model">The change password view model.</param>
+            <returns>Redirects to the index view if successful, otherwise redisplays the change password view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ManageController.SetPassword">
+            <summary>
+            GET: /Manage/SetPassword
+            
+            Displays the set password page.
+            </summary>
+            <returns>The set password view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ManageController.SetPassword(K_Burns_GU2_Speedo_Models.Models.ViewModels.SetPasswordViewModel)">
+            <summary>
+            POST: /Manage/SetPassword
+            
+            Sets a password for the user account.
+            </summary>
+            <param name="model">The set password view model.</param>
+            <returns>Redirects to the index view if successful, otherwise redisplays the set password view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ManageController.ManageLogins(System.Nullable{K_Burns_GU2_Speedo_Models.Controllers.ManageController.ManageMessageId})">
+            <summary>
+            GET: /Manage/ManageLogins
+            
+            Displays the manage logins page.
+            </summary>
+            <param name="message">The manage message ID.</param>
+            <returns>The manage logins view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ManageController.LinkLogin(System.String)">
+            <summary>
+            POST: /Manage/LinkLogin
+            
+            Links an external login to the user account.
+            </summary>
+            <param name="provider">The external login provider.</param>
+            <returns>Redirects to the external login provider to link a login for the current user.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ManageController.LinkLoginCallback">
+            <summary>
+            GET: /Manage/LinkLoginCallback
+            
+            Handles the callback after linking an external login to the user account.
+            </summary>
+            <returns>Redirects to the manage logins view with a message if successful.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ManageController.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources and optionally releases the managed resources.
+            </summary>
+            <param name="disposing">A boolean value indicating whether to release both managed and unmanaged resources or only unmanaged resources.</param>
+        </member>
+        <member name="P:K_Burns_GU2_Speedo_Models.Controllers.ManageController.AuthenticationManager">
+            <summary>
+            Gets the authentication manager.
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ManageController.AddErrors(Microsoft.AspNet.Identity.IdentityResult)">
+            <summary>
+            Adds the specified errors to the model state.
+            </summary>
+            <param name="result">The identity result containing the errors.</param>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ManageController.HasPassword">
+            <summary>
+            Determines whether the user has a password.
+            </summary>
+            <returns><c>true</c> if the user has a password; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ManageController.HasPhoneNumber">
+            <summary>
+            Determines whether the user has a phone number.
+            </summary>
+            <returns><c>true</c> if the user has a phone number; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Controllers.ManageController.ManageMessageId">
+            <summary>
+            Enumeration for manage message IDs.
+            </summary>
+        </member>
+        <member name="F:K_Burns_GU2_Speedo_Models.Controllers.ManageController.ManageMessageId.AddPhoneSuccess">
+            <summary> AddPhoneSuccess Enum Value: 0. </summary>
+        </member>
+        <member name="F:K_Burns_GU2_Speedo_Models.Controllers.ManageController.ManageMessageId.ChangePasswordSuccess">
+            <summary> ChangePasswordSuccess Enum Value: 1. </summary>
+        </member>
+        <member name="F:K_Burns_GU2_Speedo_Models.Controllers.ManageController.ManageMessageId.SetTwoFactorSuccess">
+            <summary> SetTwoFactorSuccess Enum Value: 2. </summary>
+        </member>
+        <member name="F:K_Burns_GU2_Speedo_Models.Controllers.ManageController.ManageMessageId.SetPasswordSuccess">
+            <summary> SetPasswordSuccess Enum Value: 3. </summary>
+        </member>
+        <member name="F:K_Burns_GU2_Speedo_Models.Controllers.ManageController.ManageMessageId.RemoveLoginSuccess">
+            <summary> RemoveLoginSuccess Enum Value: 4. </summary>
+        </member>
+        <member name="F:K_Burns_GU2_Speedo_Models.Controllers.ManageController.ManageMessageId.RemovePhoneSuccess">
+            <summary> RemovePhoneSuccess Enum Value: 5. </summary>
+        </member>
+        <member name="F:K_Burns_GU2_Speedo_Models.Controllers.ManageController.ManageMessageId.Error">
+            <summary> Error Enum Value: 6. </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Controllers.PaymentController">
+            <summary>
+            Manages payment-related actions, including loading payment information, processing payments, and confirming orders.
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.PaymentController.LoadPayment(K_Burns_GU2_Speedo_Models.Models.ShippingInfo)">
+            <summary>
+            Loads the payment page with the given shipping information.
+            </summary>
+            <param name="shippingInfo">The shipping information to be included.</param>
+            <returns>The payment view with the order details, or the checkout view if shipping information is invalid.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.PaymentController.Payment(K_Burns_GU2_Speedo_Models.Models.Order,System.String)">
+            <summary>
+            Processes the payment for the given order.
+            </summary>
+            <param name="order">The order details.</param>
+            <param name="PaymentType">The type of payment.</param>
+            <returns>A redirect to the payment session, or an error if the payment fails.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.PaymentController.OrderConfirmed(System.Nullable{System.Int32})">
+            <summary>
+            Confirms the order after successful payment.
+            </summary>
+            <param name="orderId">The ID of the order to confirm.</param>
+            <returns>The order confirmation view, or an error view if confirmation fails.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.PaymentController.ConvertBasketItems(System.Collections.Generic.List{K_Burns_GU2_Speedo_Models.Models.BasketItem})">
+            <summary>
+            Converts basket items to orderlines.
+            </summary>
+            <param name="basketItems">The list of basket items.</param>
+            <returns>A list of orderlines.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.PaymentController.CreatePdfInvoice(K_Burns_GU2_Speedo_Models.Models.Order)">
+            <summary>
+            Creates a PDF invoice for the given order.
+            </summary>
+            <param name="order">The order for which to create an invoice.</param>
+            <returns>The file path of the created PDF invoice.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.PaymentController.SendEmailWithPdf(System.String,System.String)">
+            <summary>
+            Sends an email with the attached PDF invoice to the user.
+            </summary>
+            <param name="userEmail">The email address of the user.</param>
+            <param name="filePath">The file path of the PDF invoice.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Controllers.ShopController">
+            <summary>
+            Controller for managing Shop related functions such as the Product page and filtering by category
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ShopController.Index">
+            <summary>
+            Retrieves all products that are not discontinued and displays them on the index page.
+            </summary>
+            <returns>View with list of products.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ShopController.Products(System.Nullable{System.Int32})">
+            <summary>
+            Retrieves products by category and displays them.
+            </summary>
+            <param name="id">Category ID</param>
+            <returns>View with list of products in the selected category.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ShopController.Index(System.Int32)">
+            <summary>
+            Adds a product to the basket.
+            </summary>
+            <param name="ProductId">Product ID</param>
+            <returns>Redirects to Index action.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ShopController.Product(System.Nullable{System.Int32})">
+            <summary>
+            Displays details of a specific product.
+            </summary>
+            <param name="id">Product ID</param>
+            <returns>View with product details.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ShopController.Product(System.Int32,K_Burns_GU2_Speedo_Models.Models.ViewModels.ProductPageViewModel)">
+            <summary>
+            Adds a product to the basket from the product details page.
+            </summary>
+            <param name="id">Product ID</param>
+            <param name="viewModel">ProductPageViewModel</param>
+            <returns>Redirects to Product action.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ShopController.Cars">
+            <summary>
+            Displays products in the "Cars" category.
+            </summary>
+            <returns>View with list of products in the "Cars" category.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ShopController.ChildSets">
+            <summary>
+            Displays products in the "Child Sets" category.
+            </summary>
+            <returns>View with list of products in the "Child Sets" category.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ShopController.Tools">
+            <summary>
+            Displays products in the "Tools" category.
+            </summary>
+            <returns>View with list of products in the "Tools" category.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ShopController.LimitedSets">
+            <summary>
+            Displays products in the "Limited Edition Sets" category.
+            </summary>
+            <returns>View with list of products in the "Limited Edition Sets" category.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ShopController.StandardSets">
+            <summary>
+            Displays products in the "Standard Sets" category.
+            </summary>
+            <returns>View with list of products in the "Standard Sets" category.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ShopController.Tracks">
+            <summary>
+            Displays products in the "Tracks" category.
+            </summary>
+            <returns>View with list of products in the "Tracks" category.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ShopController.GetRandomProducts(System.Int32)">
+            <summary>
+            Gets random products excluding a specific product.
+            </summary>
+            <param name="excludeProductId">Product ID to exclude.</param>
+            <returns>List of random products.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ShopController.ValidateProductQuantity(K_Burns_GU2_Speedo_Models.Models.ViewModels.ProductPageViewModel,K_Burns_GU2_Speedo_Models.Models.Product)">
+            <summary>
+            Validates the quantity of a product.
+            </summary>
+            <param name="viewModel">ProductPageViewModel</param>
+            <param name="product">Product</param>
+            <returns>True if quantity is valid; otherwise, false.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ShopController.EnsureBasketExists(System.String,System.Boolean)">
+            <summary>
+            Ensures a basket exists for a user, creating one if it doesn't.
+            </summary>
+            <param name="userId">User ID</param>
+            <param name="isNewBasket">Indicates if a new basket was created.</param>
+            <returns>Basket</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.ShopController.AddProductToBasket(K_Burns_GU2_Speedo_Models.Models.Product,K_Burns_GU2_Speedo_Models.Models.ViewModels.ProductPageViewModel,K_Burns_GU2_Speedo_Models.Models.Basket)">
+            <summary>
+            Adds a product to a basket.
+            </summary>
+            <param name="product">Product</param>
+            <param name="viewModel">ProductPageViewModel</param>
+            <param name="basket">Basket</param>
+            <returns>Task</returns>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Controllers.UserPageController">
+            <summary>
+            Name: Kieran Burns
+            Date Finalised: 24/05/2024
+            Class Name: UserPageController
+            </summary>
+            <summary>
+            This class holds all the dashboard/backend functionality for employees and customers.
+            REGISTERED USERS HAVE ACCESS TO THIS SHARED PAGE.
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.#ctor">
+            <summary>
+            creating constructor 0 args, calling parent constructor.
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.#ctor(K_Burns_GU2_Speedo_Models.ApplicationUserManager,K_Burns_GU2_Speedo_Models.ApplicationSignInManager)">
+            <summary>
+            creating constructor 2 args, calling parent constructor.
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.MyPlacedOrders">
+            <summary>
+            All the Custom Attribute filters in this Controller redirects user to the home/index if they are logged in as the mentioned roles type.
+            </summary>
+            <summary>
+            The MyPlacedOrders gets user by id and gets the orders (as a list) from the database, where the userid matches in the db.
+            We then send the orders list to the view.
+            </summary>
+            /// <returns>The view with the user's placed orders.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.DashboardIndex">
+            <summary>
+            The DashboardIndex gets the logged in user and their role,
+            as well as getting a list of all the users and their orders, then sends them to the view.
+            </summary>
+             /// <returns>The dashboard view with user information and orders.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.AdvancedDashboardIndex">
+            <summary>
+            The AdvancedDashboardIndex gets the logged in user and their role,
+            as well as getting a list of all the users and their orders info,
+            we also get a count for all the orders, products, users and invoices that exist in the system to display as part of the generating report functionality.
+            We send the user, orders and report information to the view.
+            </summary>
+            <returns>The advanced dashboard view with user, order, and report information.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.ManageCustomers">
+            <summary>
+            The ManageCustomers action gets all users from the database and sends them to the view.
+            </summary>
+            <returns>The view with a list of all users.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.DeleteUser(System.String,System.Nullable{System.Boolean})">
+            <summary>
+            The DeleteUser action method gets a user by ID and presents a confirmation/detail view.
+            If the user ID is incorrect or the user attempts to delete themselves, defined redirects are executed.
+            </summary>
+            <param name="userId">The ID of the user to delete.</param>
+            <param name="isCustomer">Indicates if the user is a customer.</param>
+            <returns>The view with user details for confirmation.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.DeleteUserConfirmed(System.String)">
+            <summary>
+            The DeleteUserConfirmed action method handles the actual deletion of a user.
+            It gets the user and their orders, deletes them from the database, and redirects to the appropriate management page, depedening on user type (customer or employee).
+            </summary>
+            <param name="userId">The ID of the user to delete.</param>
+            <returns>The appropriate management view after deletion.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.EditUser(System.String)">
+            <summary>
+            The EditUser action gets a user by ID and presents a view for editing their details.
+            It differentiates between employees and customers, providing relevant information and roles.
+            </summary>
+            <param name="userId">The ID of the user to edit.</param>
+            <returns>The view with user details for editing.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.EditUserConfirmed(System.String,K_Burns_GU2_Speedo_Models.Models.ViewModels.EditUserViewModel)">
+            <summary>
+            The EditUserConfirmed action handles the updating of a user's details based on the provided model.
+            It updates user information, including roles and specific details for employees and customers.
+            </summary>
+            <param name="userId">The ID of the user to edit.</param>
+            <param name="model">The model containing the updated user details.</param>
+            <returns>The appropriate management view after editing.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.UserDetails(System.String)">
+            <summary>
+            The UserDetails action gets and displays the details of a user based on the provided ID.
+            </summary>
+            <param name="userId">The ID of the user to display details for.</param>
+            <returns>The view with user details.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.RecordProduct">
+            <summary>
+            The RecordProduct action gets a new product model and the categories from the database, and sends them to the view for product creation.
+            </summary>
+            <returns>The view for recording a new product.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.RecordProduct(K_Burns_GU2_Speedo_Models.Models.ViewModels.ProductViewModel)">
+            <summary>
+            The RecordProduct action gets the product details from the form, validates and saves the product to the database, and sends a confirmation message.
+            </summary>
+            <param name="product">The product details from the form.</param>
+            <returns>The appropriate view after recording the product.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.ManageProduct">
+            <summary>
+            The ManageProduct action gets all the products from the database and sends them to the view.
+            </summary>
+            <returns>The view with all products.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.ProductDetails(System.Nullable{System.Int32})">
+            <summary>
+            The ProductDetails action gets the product details from the database and sends them to the view.
+            </summary>
+            <param name="productId">The ID of the product.</param>
+            <returns>The view with product details.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.DeleteProduct(System.Nullable{System.Int32})">
+            <summary>
+            The DeleteProduct action gets the product details for confirmation of deletion.
+            </summary>
+            <param name="productId">The ID of the product to delete.</param>
+            <returns>The view with product details for confirmation.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.DeletedProduct(System.Nullable{System.Int32})">
+            <summary>
+            The DeletedProduct action handles the deletion of a product from the database.
+            </summary>
+            <param name="productId">The ID of the product to delete.</param>
+            <returns>The appropriate view after deletion.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.EditProduct(System.Int32)">
+            <summary>
+            The EditProduct action gets the product details for editing, including the categories, and sends them to the view.
+            </summary>
+            <param name="productId">The ID of the product to edit.</param>
+            <returns>The view with product details for editing.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.EditProduct(K_Burns_GU2_Speedo_Models.Models.ViewModels.ProductViewModel)">
+            <summary>
+            The EditProduct action handles the updating of a product's details and saves the changes to the database.
+            </summary>
+            <param name="product">The product details from the form.</param>
+            <returns>The appropriate view after editing the product.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.PlacedOrders">
+            <summary>
+            The PlacedOrders action gets all the orders along with the associated users and shipping information from the database, and sends them to the view.
+            </summary>
+            <returns>The view with all placed orders.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.DetailsOrder(System.Nullable{System.Int32})">
+            <summary>
+            The DetailsOrder action gets the details of a specific order by ID, including the user, orderlines, product, and category information, and sends them to the view.
+            </summary>
+            <param name="orderId">The ID of the order.</param>
+            <returns>The view with order details.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.AmendOrder(System.Nullable{System.Int32})">
+            <summary>
+            The AmendOrder action gets the details of a specific order by ID for editing, including the user, orderlines, product, and category information, and sends them to the view.
+            </summary>
+            <param name="orderId">The ID of the order to amend.</param>
+            <returns>The view with order details for editing.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.AmendedOrder(K_Burns_GU2_Speedo_Models.Models.Order,System.String)">
+            <summary>
+            The AmendedOrder action handles the update of a specific order, including changes to orderlines and recalculating totals, and saves the changes to the database.
+            </summary>
+            <param name="order">The order details from the form.</param>
+            <param name="selectedOrderLineId">The ID of the selected order line to amend.</param>
+            <returns>The appropriate view after editing the order.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.RemoveOrder(System.Nullable{System.Int32})">
+            <summary>
+            The RemoveOrder action gets the details of a specific order by ID for confirmation of deletion, including the user, order lines, product, and category information, and sends them to the view.
+            </summary>
+            <param name="orderId">The ID of the order to remove.</param>
+            <returns>The view with order details for confirmation.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.OrderRemoved(System.String)">
+            <summary>
+            The OrderRemoved action handles the deletion of a specific order, updates the stock levels, and removes the order from the database.
+            </summary>
+            <param name="orderId">The ID of the order to remove.</param>
+            <returns>The appropriate view after deleting the order.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.OrdersReport">
+            <summary>
+            The OrdersReport action gets all orders along with their associated users from the database, and sends them to the view.
+            </summary>
+            <returns>The view with all orders for the report.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.InvoicesReport">
+            <summary>
+            The InvoicesReport action gets all invoices along with their associated orders and users from the database, and sends them to the view.
+            </summary>
+            <returns>The view with all invoices for the report.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.ProductsReport">
+            <summary>
+            The ProductsReport action gets all products from the database and sends them to the view.
+            </summary>
+            <returns>The view with all products for the report.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.UsersReport">
+            <summary>
+            The UsersReport action gets all users from the database and sends them to the view.
+            </summary>
+            <returns>The view with all users for the report.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.ByDay(System.String)">
+            <summary>
+            The ByDay action gets the specified report (Products, Orders, Invoices, Users) for the day and sends it to the view.
+            </summary>
+            <param name="reportType">The type of report to generate (Products, Orders, Invoices, Users).</param>
+            <returns>The view with the daily report.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.ByWeek(System.String)">
+            <summary>
+            The ByWeek action gets the specified report (Products, Orders, Invoices, Users) for the week and sends it to the view.
+            </summary>
+            <param name="reportType">The type of report to generate (Products, Orders, Invoices, Users).</param>
+            <returns>The view with the weekly report.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.ByMonth(System.String)">
+            <summary>
+            The ByMonth action gets the specified report (Products, Orders, Invoices, Users) for the month and sends it to the view.
+            </summary>
+            <param name="reportType">The type of report to generate (Products, Orders, Invoices, Users).</param>
+            <returns>The view with the monthly report.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.GetProductsReport(System.String)">
+            <summary>
+            Gets the products report for the specified report type.
+            </summary>
+            <param name="reportType">The type of the report to generate.</param>
+            <returns>A ReportsViewModel containing the products report.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.GetOrdersReport(System.String)">
+            <summary>
+            Gets the orders report for the specified report type.
+            </summary>
+            <param name="reportType">The type of the report to generate.</param>
+            <returns>A ReportsViewModel containing the orders report.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.GetInvoicesReport(System.String)">
+            <summary>
+            Gets the invoices report for the specified report type.
+            </summary>
+            <param name="reportType">The type of the report to generate.</param>
+            <returns>A ReportsViewModel containing the invoices report.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.GetUsersReport(System.String)">
+            <summary>
+            Gets the users report for the specified report type.
+            </summary>
+            <param name="reportType">The type of the report to generate.</param>
+            <returns>A ReportsViewModel containing the users report.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.CreateInvoice">
+            <summary>
+            Displays the create invoice page.
+            </summary>
+            <returns>The create invoice view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.CreateInvoice(K_Burns_GU2_Speedo_Models.Models.ViewModels.InvoiceViewModel)">
+            <summary>
+            Processes the creation of a new invoice.
+            </summary>
+            <param name="invoiceViewModel">The invoice view model containing the invoice details.</param>
+            <returns>The manage invoices view if successful, otherwise redisplays the create invoice view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.ManageInvoices">
+            <summary>
+            Displays the manage invoices page.
+            </summary>
+            <returns>The manage invoices view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.DeleteInvoice(System.Nullable{System.Int32})">
+            <summary>
+            Displays the delete invoice page for a specific invoice.
+            </summary>
+            <param name="invoiceId">The ID of the invoice to delete.</param>
+            <returns>The delete invoice view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.DeletedInvoice(System.Nullable{System.Int32})">
+            <summary>
+            Processes the deletion of a specific invoice.
+            </summary>
+            <param name="invoiceId">The ID of the invoice to delete.</param>
+            <returns>The manage invoices view after deletion.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.InvoiceDetails(System.Nullable{System.Int32})">
+            <summary>
+            Displays the details of a specific invoice.
+            </summary>
+            <param name="invoiceId">The ID of the invoice to view.</param>
+            <returns>The invoice details view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.DispatchGoods">
+            <summary>
+            Displays the dispatch goods view.
+            </summary>
+            <returns>The view for dispatching goods.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.DispatchGoods(K_Burns_GU2_Speedo_Models.Models.ViewModels.DispatchViewModel)">
+            <summary>
+            Handles the dispatching of goods.
+            </summary>
+            <param name="dispatchViewModel">The dispatch view model containing dispatch details.</param>
+            <returns>The appropriate view after dispatching goods.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.ManageDispatches">
+            <summary>
+            Displays the manage dispatches view.
+            </summary>
+            <returns>The view for managing dispatches.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.DeleteDispatch(System.Nullable{System.Int32})">
+            <summary>
+            Displays the delete dispatch view.
+            </summary>
+            <param name="orderId">The ID of the order to delete dispatch for.</param>
+            <returns>The view for deleting a dispatch.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.DeletedDispatch(System.Nullable{System.Int32})">
+            <summary>
+            Handles the deletion of a dispatch.
+            </summary>
+            <param name="orderId">The ID of the order to delete dispatch for.</param>
+            <returns>The appropriate view after deleting the dispatch.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.DispatchDetails(System.Nullable{System.Int32})">
+            <summary>
+            Displays the dispatch details view.
+            </summary>
+            <param name="orderId">The ID of the order to display dispatch details for.</param>
+            <returns>The view with dispatch details.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.EditDispatch(System.Nullable{System.Int32})">
+            <summary>
+            Displays the edit dispatch view.
+            </summary>
+            <param name="orderId">The ID of the order to edit dispatch for.</param>
+            <returns>The view for editing a dispatch.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.EditedDispatch(K_Burns_GU2_Speedo_Models.Models.ViewModels.DispatchViewModel)">
+            <summary>
+            Handles the editing of a dispatch.
+            </summary>
+            <param name="dispatchViewModel">The dispatch view model containing dispatch details.</param>
+            <returns>The appropriate view after editing the dispatch.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.ProductCount">
+            <summary>
+            Displays the product count view for creating an order.
+            </summary>
+            <returns>The product count view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.CreateOrder(K_Burns_GU2_Speedo_Models.Models.ViewModels.CreateOrderViewModel)">
+            <summary>
+            Displays the create order view.
+            </summary>
+            <param name="orderViewModel">The order view model.</param>
+            <returns>The create order view.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.CreatedOrder(K_Burns_GU2_Speedo_Models.Models.ViewModels.CreateOrderViewModel)">
+            <summary>
+            Creates a new order based on the provided order view model.
+            </summary>
+            <param name="orderViewModel">The order view model.</param>
+            <returns>A redirect to the placed orders page or the create order view with validation messages.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Controllers.UserPageController.DiscountPercentage(System.Decimal,System.Decimal)">
+            <summary>
+            Calculates the discount percentage between the original price and the discount price.
+            </summary>
+            <param name="originalPrice">The original price of the product.</param>
+            <param name="discountPrice">The discount price of the product.</param>
+            <returns>The discount percentage as an integer.</returns>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.CustomAttributes.AuthorizeRedirectAttribute">
+            <summary>
+            Custom authorization attribute that redirects unauthorized users to a specified URL.
+            </summary>
+        </member>
+        <member name="P:K_Burns_GU2_Speedo_Models.CustomAttributes.AuthorizeRedirectAttribute.RedirectUrl">
+            <summary>
+            Gets or sets the URL to redirect unauthorized users to. Default is "/".
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.CustomAttributes.AuthorizeRedirectAttribute.AuthorizeCore(System.Web.HttpContextBase)">
+            <summary>
+            Determines whether access to the core framework is authorized.
+            </summary>
+            <param name="httpContext">The HTTP context, which encapsulates all HTTP-specific information about an individual HTTP request.</param>
+            <returns>True if the user is authorized; otherwise, false.</returns>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.CustomAttributes.AuthorizeRedirectAttribute.HandleUnauthorizedRequest(System.Web.Mvc.AuthorizationContext)">
+            <summary>
+            Handles unauthorized requests.
+            </summary>
+            <param name="filterContext">Encapsulates the information needed to use the <see cref="T:System.Web.Mvc.AuthorizeAttribute"/>.</param>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.MvcApplication">
+            <summary>
+            Represents the main application class.
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.MvcApplication.Application_Start">
+            <summary>
+            Handles the application start event.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.Basket">
+            <summary>
+            Represents a shopping basket.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.BasketItem">
+            <summary>
+            Represents an item in a shopping basket.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.Category">
+            <summary>
+            Represents a product category.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.Customer">
+            <summary>
+            Represents a customer user.
+            Which is a child class of 'User'
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.CustomerType">
+             <summary>
+             Enum for customer types.
+             .
+             
+             Premium(Indvidual) = faster, cheaper shipping
+            Corporate(Business) = faster, cheaper shipping
+            Standard(Indvidual) = default
+             </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.DatabaseInitialiser">
+            <summary>
+            Database initializer for creating and seeding the SpeedoModels database.
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Models.DatabaseInitialiser.Seed(K_Burns_GU2_Speedo_Models.Models.SpeedoModelsDbContext)">
+            <summary>
+            Seeds the database with initial data.
+            </summary>
+            <param name="context">The database context.</param>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.Employee">
+            <summary>
+            Represents an employee.
+            Which is a child class of 'User'
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.EmployementStatus">
+            <summary>
+            Enumeration for employment status.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.Invoice">
+            <summary>
+            Represents an invoice.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.Order">
+            <summary>
+            Represents an order.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.Status">
+            <summary>
+            Enumeration for order status.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.OrderLine">
+            <summary>
+            Represents an order line.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.Parcel">
+            <summary>
+            Represents a parcel.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.ParcelType">
+            <summary>
+            Enumeration for parcel type.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.Method">
+            <summary>
+            Enumeration for delivery method.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.Payment">
+            <summary>
+            Represents a payment.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.Product">
+            <summary>
+            Represents a product.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.RedirectUnauthorizedUsersFilterAttribute">
+            <summary>
+            Custom action filter attribute to redirect unauthorized users based on their roles.
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Models.RedirectUnauthorizedUsersFilterAttribute.OnActionExecuted(System.Web.Mvc.ActionExecutedContext)">
+            <summary>
+            Called after an action method is executed.
+            </summary>
+            <param name="filterContext">The filter context.</param>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.ShippingInfo">
+            <summary>
+            Represents shipping information.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.SpeedoModelsDbContext">
+            <summary>
+            Represents the Speedo Models database context.
+            </summary>
+        </member>
+        <member name="P:K_Burns_GU2_Speedo_Models.Models.SpeedoModelsDbContext.Categories">
+            <summary>
+            Declare database sets (Similiar to List Collection) attributes
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Models.SpeedoModelsDbContext.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:K_Burns_GU2_Speedo_Models.Models.SpeedoModelsDbContext"/> class.
+            </summary>
+        </member>
+        <member name="M:K_Burns_GU2_Speedo_Models.Models.SpeedoModelsDbContext.Create">
+            <summary>
+            Creates a new instance of the <see cref="T:K_Burns_GU2_Speedo_Models.Models.SpeedoModelsDbContext"/> class.
+            </summary>
+            <returns>A new instance of the <see cref="T:K_Burns_GU2_Speedo_Models.Models.SpeedoModelsDbContext"/> class.</returns>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.ViewModels.ExternalLoginConfirmationViewModel">
+            <summary>
+            ViewModel for confirming external login with an email.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.ViewModels.ExternalLoginListViewModel">
+            <summary>
+            ViewModel for listing external login providers.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.ViewModels.SendCodeViewModel">
+            <summary>
+            ViewModel for sending a code to the selected provider.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.ViewModels.VerifyCodeViewModel">
+            <summary>
+            ViewModel for verifying a code sent by a provider.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.ViewModels.ForgotViewModel">
+            <summary>
+            ViewModel for the forgot password functionality.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.ViewModels.LoginViewModel">
+            <summary>
+            ViewModel for logging in.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.ViewModels.RegisterViewModel">
+            <summary>
+            ViewModel for registering a new user.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.ViewModels.ResetPasswordViewModel">
+            <summary>
+            ViewModel for resetting a password.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.ViewModels.ForgotPasswordViewModel">
+            <summary>
+            ViewModel for the forgot password functionality.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.ViewModels.AdvancedDashboardViewModels">
+            <summary>
+            ViewModel for the advanced dashboard, providing detailed information about users and their orders.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.ViewModels.BasketShippingViewModel">
+            <summary>
+            ViewModel for handling basket and shipping information.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.ViewModels.CreateOrderViewModel">
+            <summary>
+            ViewModel for creating a new order.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.ViewModels.DispatchViewModel">
+            <summary>
+            ViewModel for managing dispatches.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.ViewModels.InvoiceViewModel">
+            <summary>
+            ViewModel for displaying an invoice with related order and user information.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.ViewModels.ProductViewModel">
+            <summary>
+            ViewModel for creating and managing product details.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.ViewModels.EditUserViewModel">
+            <summary>
+            ViewModel for editing a user.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.ViewModels.CreateEmployeeViewModel">
+            <summary>
+            ViewModel for creating a new employee.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.ViewModels.IndexViewModel">
+            <summary>
+            ViewModel for the user's account index page.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.ViewModels.ManageLoginsViewModel">
+            <summary>
+            ViewModel for managing user logins.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.ViewModels.FactorViewModel">
+            <summary>
+            ViewModel for factors related to two-factor authentication.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.ViewModels.SetPasswordViewModel">
+            <summary>
+            ViewModel for setting a new password.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.ViewModels.ChangePasswordViewModel">
+            <summary>
+            ViewModel for changing a user's password.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.ViewModels.AddPhoneNumberViewModel">
+            <summary>
+            ViewModel for adding a phone number.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.ViewModels.VerifyPhoneNumberViewModel">
+            <summary>
+            ViewModel for verifying a phone number.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.ViewModels.ConfigureTwoFactorViewModel">
+            <summary>
+            ViewModel for configuring two-factor authentication.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.ViewModels.ProductPageViewModel">
+            <summary>
+            ViewModel for displaying product details on a product page.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.ViewModels.ReportsViewModel">
+            <summary>
+            ViewModel for generating reports.
+            </summary>
+        </member>
+        <member name="T:K_Burns_GU2_Speedo_Models.Models.User">
+            <summary>
+            Represents a user.
+            
+            Parent Class of Employee and Customer
+            </summary>
+        </member>
+    </members>
+</doc>
