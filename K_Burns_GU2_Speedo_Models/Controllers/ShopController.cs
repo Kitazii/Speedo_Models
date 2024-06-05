@@ -29,8 +29,8 @@ namespace K_Burns_GU2_Speedo_Models.Controllers
         /// <returns>View with list of products.</returns>
         public ActionResult Index()
         {
-            // Getting all the products that are not discontinued
-            var products = context.Products.Where(p => p.Discontinued == false).ToList();
+            // Getting all the products that are not discontinued and deleted
+            var products = context.Products.Where(p => p.Discontinued == false && p.IsDeleted == false).ToList();
 
             // Declare empty string
             string selectedCategory = null;
@@ -62,8 +62,8 @@ namespace K_Burns_GU2_Speedo_Models.Controllers
         /// <returns>View with list of products in the selected category.</returns>
         public ActionResult Products(int? id)
         {
-            // Getting all the products that are not discontinued and that are in different categories
-            var products = context.Products.Where(p => p.Discontinued == false).Where(p => p.CategoryId == id).ToList();
+            // Getting all the products that are not discontinued and deleted that are in different categories
+            var products = context.Products.Where(p => p.Discontinued == false && p.IsDeleted == false).Where(p => p.CategoryId == id).ToList();
 
             // Get the name of the passed in category
             // If it is empty it will assign null to our variable
@@ -517,6 +517,7 @@ namespace K_Burns_GU2_Speedo_Models.Controllers
             // Get all products from the database, excluding the specified product
             List<Product> allProducts = context.Products
                 .Where(p => p.ProductId != excludeProductId)
+                .Where(p => p.IsDeleted == false)
                 .ToList();
 
             // Randomly select 3 products from the list

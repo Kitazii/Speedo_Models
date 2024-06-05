@@ -671,8 +671,8 @@ namespace K_Burns_GU2_Speedo_Models.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Product cannot be found.");
             }
 
-            // Remove the product from the database
-            db.Products.Remove(product);
+            // Set the IsDeleted flag to true
+            product.IsDeleted = true;
             await db.SaveChangesAsync();
 
             // Set a confirmation message

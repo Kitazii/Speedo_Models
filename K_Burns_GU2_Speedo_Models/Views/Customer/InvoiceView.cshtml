@@ -55,18 +55,11 @@
                                         <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
                                             <p class="mb-0 small">Qty: @item.Quantity</p>
                                         </div>
-                                        @if (item.Product.OnSale)
-                                        {
-                                            <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                                <p class="mb-0 small">£@item.Product.DiscountPrice</p>
-                                            </div>
-                                        }
-                                        else
-                                        {
-                                            <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                                <p class="mb-0 small">£@item.Product.Price</p>
-                                            </div>
-                                        }
+
+                                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                            <p class="mb-0 small">£@item.LineTotal</p>
+                                        </div>
+
                                     </div>
                                     <hr class="mb-4" style="background-color: #e0e0e0; opacity: 1;">
                                     <div class="row d-flex align-items-center">

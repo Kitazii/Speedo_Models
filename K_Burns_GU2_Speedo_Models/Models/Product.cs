@@ -26,6 +26,8 @@ namespace K_Burns_GU2_Speedo_Models.Models
         [Display(Name = "Product Description")]
         public string ProductDescription { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         [Required]
         public decimal Price { get; set; }
 
