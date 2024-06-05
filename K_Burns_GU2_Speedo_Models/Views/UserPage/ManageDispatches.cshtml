@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
+<!--ALERT MESSAGE-->
 @if (TempData["AlertMessage"] != null)
 {
     <br />
@@ -16,6 +17,7 @@
     <br />
 }
 
+<!--SUCCESS MESSAGE-->
 @if (TempData["ConfirmationMessage"] != null)
 {
     <br />
@@ -27,6 +29,7 @@
     <br />
 }
 
+<!--Displays Manage Dispatches page-->
 <div class="container-fluid px-4">
     <div class="card mb-4">
         <div class="card-header">

@@ -1894,7 +1894,7 @@ namespace K_Burns_GU2_Speedo_Models.Controllers
 
         //**********************************************************************************************************************************************************
 
-        //  SALES ASSISTANT
+        //  SALES ASSISTANT & SALES MANAGER
         //**********************************************************************************************************************************************************
 
         //**********************************************************************************************************************************************************
@@ -1906,7 +1906,7 @@ namespace K_Burns_GU2_Speedo_Models.Controllers
         /// Displays the product count view for creating an order.
         /// </summary>
         /// <returns>The product count view.</returns>
-        [AuthorizeRedirect(Roles = "Admin,Sales Assistant", RedirectUrl = "/Home/Index")]
+        [AuthorizeRedirect(Roles = "Admin,Sales Assistant,Sales Manager", RedirectUrl = "/Home/Index")]
         [HttpGet]
         public ActionResult ProductCount()
         {
@@ -1928,7 +1928,7 @@ namespace K_Burns_GU2_Speedo_Models.Controllers
         /// </summary>
         /// <param name="orderViewModel">The order view model.</param>
         /// <returns>The create order view.</returns>
-        [AuthorizeRedirect(Roles = "Admin,Sales Assistant", RedirectUrl = "/Home/Index")]
+        [AuthorizeRedirect(Roles = "Admin,Sales Assistant,Sales Manager", RedirectUrl = "/Home/Index")]
         [HttpGet]
         public ActionResult CreateOrder(CreateOrderViewModel orderViewModel)
         {
@@ -1971,24 +1971,11 @@ namespace K_Burns_GU2_Speedo_Models.Controllers
         /// </summary>
         /// <param name="orderViewModel">The order view model.</param>
         /// <returns>A redirect to the placed orders page or the create order view with validation messages.</returns>
-        [AuthorizeRedirect(Roles = "Admin,Sales Assistant", RedirectUrl = "/Home/Index")]
+        [AuthorizeRedirect(Roles = "Admin,Sales Assistant,Sales Manager", RedirectUrl = "/Home/Index")]
         [HttpPost, ActionName("CreateOrder")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreatedOrder(CreateOrderViewModel orderViewModel)
         {
-
-            // Check if an order with the same ID already exists
-            Order existingOrder = await db.Orders
-                .Where(o => o.OrderId == orderViewModel.Order.OrderId)
-                .FirstOrDefaultAsync();
-
-            // Check if the order exists
-            if (existingOrder != null)
-            {
-                // If it does we prompt the user with the following error
-                TempData["AlertMessage"] = "Order Already Exists, Enter a unique/new orderId OR Username doesn't exist in the database";
-                return View(orderViewModel);
-            }
 
             // Fetch the products related to the orderlines in a single query
             var productIds = orderViewModel.OrderLines.Select(ol => ol.Product.ProductId).ToList();
@@ -2005,7 +1992,7 @@ namespace K_Burns_GU2_Speedo_Models.Controllers
             if (user == null)
             {
                 // If it is we prompt the user with the following error
-                TempData["AlertMessage"] = "Order Already Exists, Enter a unique/new orderId OR Username doesn't exist in the database";
+                TempData["AlertMessage"] = "Username doesn't exist in the database";
                 return View(orderViewModel);
             }
 
@@ -2047,7 +2034,6 @@ namespace K_Burns_GU2_Speedo_Models.Controllers
             // Create a new order object
             var order = new Order
             {
-                OrderId = orderViewModel.Order.OrderId,
                 OrderDate = DateTime.Now,
                 DeliveryDate = DateTime.Now,
                 Status = orderViewModel.Order.Status,
@@ -2056,12 +2042,6 @@ namespace K_Burns_GU2_Speedo_Models.Controllers
                 OrderLines = new List<OrderLine>()
             };
 
-            // If the order ID is 0, we return the view
-            if (order.OrderId == 0)
-            {
-                // We return the view
-                return View(orderViewModel);
-            }
 
             decimal totalOrder = 0;
 

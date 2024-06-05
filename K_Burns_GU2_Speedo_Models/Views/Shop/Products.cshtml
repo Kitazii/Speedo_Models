@@ -19,6 +19,7 @@
         }
 </style>
 
+<!--ALERT MESSAGE-->
 @if (TempData["AlertMessage"] != null)
 {
     <br />
@@ -30,6 +31,7 @@
     <br />
 }
 
+<!--WARNING MESSAGE-->
 @if (TempData["WarningMessage"] != null)
 {
     <br />
@@ -41,28 +43,8 @@
     <br />
 }
 
+<!-- Deals with displaying each product in the system-->
 <div class="row d-flex justify-content-center">
-    @*<div class="col-lg-3 ms-3">
-        @if (category == "" || category == null)
-        {
-            <h2 class="my-4 text-center">Shop by Category</h2>
-        }
-        else
-        {
-            <h2 class="my-4 text-center">Shopping by @category</h2>
-        }
-        <div class="list-group">
-
-            @foreach (var item in ViewBag.Categories)
-            {
-                <a href="@Url.Action("Products", "Shop", new { id = item.CategoryId })" class="list-group-item">@item.CategoryName</a>
-            }
-        </div>
-        <div class="m-2 ms-5">
-            <img src="~/Images/Icons/250x250.png" class="img-fluid" style="border: 1px solid rgba(0, 0, 0, .25);" />
-        </div>
-
-    </div>*@
 
     <div class="col-lg-8">
 
@@ -101,8 +83,6 @@
                                         {
                                             <span>£@item.Price</span>
                                         }
-
-                                        @*<p class="fw-bold">@item.Category.CategoryName</p>*@
                                     </div>
                                 </div>
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">

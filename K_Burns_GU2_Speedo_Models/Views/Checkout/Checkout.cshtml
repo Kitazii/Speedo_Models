@@ -4,6 +4,7 @@
     var basketItems = Model.Basket.BasketItems;
 }
 
+<!-- Style additions -->
 <style>
     .this-border {
         border: 2px solid #000000;
@@ -32,8 +33,10 @@
     }
 </style>
 
+<!-- Displays Checkout page-->
 <section class="h-100 gradient-custom">
     <div class="container py-5">
+        <!--ALERT MESSAGE-->
         @if (TempData["AlertMessage"] != null)
         {
             <br />
@@ -82,6 +85,7 @@
                                     <ul>
                                         <li>@item.Product.ProductDescription</li>
                                     </ul>
+                                    <!--Submit Remove Item Form-->
                                     @using (Html.BeginForm("RemoveItem", "Checkout", FormMethod.Post))
                                     {
                                         @Html.AntiForgeryToken()
@@ -90,21 +94,18 @@
                                             <i class="fas fa-trash"><img src="~/Images/Icons/trash_closed.png" /></i>
                                         </button>
                                     }
-                                    @*<button type="button" class="btn btn-danger btn-sm mb-2" data-mdb-toggle="tooltip"
-                title="Move to the wish list">
-            <i class="fas fa-heart"><img src="~/Images/Icons/favourite.png" /></i>
-        </button>*@
                                     <!-- Data -->
                                 </div>
 
                                 <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                                     <!-- Quantity -->
                                     <div class="d-flex mb-4" style="max-width: 300px">
+
+                                        <!--Submit Decrement Checkout Form-->
                                         @using (Html.BeginForm("DecrementCheckout", "Checkout", FormMethod.Post))
                                         {
                                             @Html.AntiForgeryToken()
-                                            <button class="btn btn-primary px-3 me-2 button-height btn-minus" type="submit" name="BasketItemId" value="@item.BasketItemId"
-                                                    @*onclick="this.parentNode.querySelector('input[type=number]').stepDown()"*@>
+                                            <button class="btn btn-primary px-3 me-2 button-height btn-minus" type="submit" name="BasketItemId" value="@item.BasketItemId">
                                                 <i class="fas fa-minus">-</i>
                                             </button>
                                         }
@@ -114,19 +115,18 @@
                                             <label class="form-label d-flex justify-content-center" for="quantity_@item.Product.ProductId">Quantity</label>
                                         </div>
 
+                                        <!--Submit Increment Checkout Form-->
                                         @using (Html.BeginForm("IncrementCheckout", "Checkout", FormMethod.Post))
                                         {
                                             @Html.AntiForgeryToken()
 
                                             <!--Passing the orderlineid to the post-->
                                             <button class="btn btn-primary px-3 ms-2 button-height btn-plus" type="submit" name="BasketItemId" value="@item.BasketItemId">
-                                                @*onclick="this.parentNode.querySelector('input[type=number]').stepUp()"*@
                                                 <i class="fas fa-plus">+</i>
                                             </button>
 
                                         }
                                     </div>
-                                    <!-- Quantity -->
                                     <!-- Price -->
                                     <p class="text-start text-md-center product-price" data-product-id="@item.Product.ProductId">
                                         <strong>£<span class="price-value">@item.ItemTotal</span></strong>
@@ -135,14 +135,13 @@
                                 </div>
 
                             </div>
-                            <!-- Single item -->
-
                             <hr class="my-4" />
                         </div>
                     }
 
                 </div>
 
+                <!-- Submit Load Payment Form -->
                 @using (Html.BeginForm("LoadPayment", "Payment", FormMethod.Post, new { id = "paymentForm" }))
                 {
                     @Html.AntiForgeryToken()
@@ -156,6 +155,7 @@
                         </div>
                     </div>
 
+                    <!-- Shipping Info -->
                     <div class="card mb-4 form-group">
                         <div class="card-body this-border">
                             <p><strong>Shipping Details</strong></p>
@@ -209,13 +209,12 @@
                             <img class="me-2" style="width: 45px;"
                                  src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
                                  alt="Mastercard" />
-                            <img class="me-2" style="width: 45px;"
-                                 src="~/Images/Icons/paypal.png"
-                                 alt="PayPal acceptance mark" />
                         </div>
                     </div>
                 }
             </div>
+
+            <!-- Summary page -->
             <div class="col-md-4">
                 <div class="card mb-4 this-border">
                     <div class="card-header py-3">
@@ -256,76 +255,3 @@
         document.getElementById('paymentForm').submit();
     });
 </script>
-
-
-@*<script>
-
-        document.addEventListener('DOMContentLoaded', function () {
-
-            const shippingCost = 4.99; // Assuming a fixed shipping cost for simplicity.
-
-            const updateTotalAmount = () => {
-                let newBasketTotal = 0;
-                document.querySelectorAll('.product-price .price-value').forEach(priceElement => {
-                    const container = priceElement.closest('.card-body');
-                    const quantityInput = document.querySelector(`#quantity_${container.dataset.productId}`).value;
-                    const quantity = parseInt(quantityInput, 10);
-                    const pricePerItem = parseFloat(priceElement.getAttribute('data-original-price'));
-                    newBasketTotal += pricePerItem * quantity;
-                });
-
-                document.querySelector('#basketTotal').textContent = `£${newBasketTotal.toFixed(2)}`;
-                document.querySelector('#totalAmount').textContent = `£${(newBasketTotal + shippingCost).toFixed(2)}`;
-            };
-            const updatePrice = (productId, newQuantity) => {
-                // Assuming 'pricePerItem' is the price for a single item, retrieved once outside of this function.
-                const pricePerItem = parseFloat(document.querySelector(`.product-price[data-product-id='${productId}'] .price-value`).getAttribute('data-original-price'));
-
-                // Calculate the new price based on the updated quantity.
-                const newPrice = pricePerItem * newQuantity;
-
-                // Update the displayed price to the newly calculated price, formatted to two decimal places.
-                document.querySelector(`.product-price[data-product-id='${productId}'] .price-value`).textContent = newPrice.toFixed(2);
-
-                // Update the total amount whenever an item's price is updated.
-                updateTotalAmount();
-            };
-
-            // Attach event listeners to both the 'plus' and 'minus' buttons.
-            document.querySelectorAll('.btn-plus, .btn-minus').forEach(button => {
-                button.addEventListener('click', function (e) {
-                    e.preventDefault(); // Prevent the default action to avoid submitting forms or navigating away.
-
-                    // Determine whether the clicked button is meant to increment or decrement the quantity.
-                    const isIncrement = this.classList.contains('btn-plus');
-
-                    // Find the nearest parent element that represents the product item to ensure we're working within the correct context.
-                    const container = this.closest('.card-body');
-                    const productId = container.dataset.productId; // Retrieve the unique product ID assigned to the element.
-                    const quantityInput = document.querySelector(`#quantity_${productId}`);
-
-                    if (quantityInput) { // Ensure the 'quantityInput' exists before proceeding.
-                        let quantity = parseInt(quantityInput.value); // Parse the current value to an integer for arithmetic operations.
-
-                        // Adjust the quantity based on whether the action is to increment or decrement.
-                        quantity = isIncrement ? quantity + 1 : quantity - 1;
-                        quantity = Math.max(quantity, 0); // Ensure the quantity never goes below 0.
-
-                        // Update the input field to reflect the new quantity.
-                        quantityInput.value = quantity;
-
-                        // Recalculate and display the updated price based on the new quantity.
-                        updatePrice(productId, quantity);
-                    }
-                });
-            });
-
-            // Initial setting of 'data-original-price' for each product price element.
-            document.querySelectorAll('.product-price').forEach(priceElement => {
-                const priceValueElement = priceElement.querySelector('.price-value');
-                const originalPrice = parseFloat(priceValueElement.textContent);
-                priceValueElement.setAttribute('data-original-price', originalPrice);
-            });
-            updateTotalAmount(); // Ensure the total amount is correct on page load.
-        });
-    </script>*@

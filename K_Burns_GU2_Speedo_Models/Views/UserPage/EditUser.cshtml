@@ -5,6 +5,8 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
+<!--Deals with edit user form-->
+
 <h2 class="text-center">Edit A User</h2>
 
 <br />
@@ -15,7 +17,6 @@
     @Html.AntiForgeryToken()
 
     <div class="container">
-        @*@Html.HiddenFor(model => model.OldRole)*@
         <h4 class="text-center White-Text">Are you sure you want to edit this user?</h4>
         <hr />
         <div class="row">

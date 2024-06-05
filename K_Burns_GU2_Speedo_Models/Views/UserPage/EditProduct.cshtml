@@ -5,6 +5,9 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
+<!--Deals with edit product form-->
+<!--Access depends on employees role-->
+
 <h2 class="text-center">Edit A Product</h2>
 
 <br />
@@ -16,7 +19,6 @@
     @Html.HiddenFor(model => model.ImageUrl)
 
     <div class="container">
-        @*@Html.HiddenFor(model => model.OldRole)*@
         <h4 class="text-center White-Text">Are you sure you want to edit this product?</h4>
         <hr />
         <div class="row">
@@ -137,14 +139,6 @@
                             @Html.HiddenFor(model => model.ProductSize)
                         </dd>
 
-                        @*<dt class="col-sm-4">
-                            @Html.LabelFor(model => model.OnSale, htmlAttributes: new { @class = "control-label" })
-                        </dt>
-                        <dd class="col-sm-8">
-                            @Html.CheckBoxFor(model => model.OnSale, new { htmlAttributes = new { @class = "form-control mb-3" }, @disabled = "disabled" })
-                            @Html.HiddenFor(model => model.OnSale)
-                        </dd>*@
-
                         <dt class="col-sm-4">
                             @Html.LabelFor(model => model.Discontinued, htmlAttributes: new { @class = "control-label" })
                         </dt>
@@ -163,74 +157,66 @@
                     }
                     @if (User.IsInRole("Admin") || User.IsInRole("Sales Manager"))
                     {
-                    <dt class="col-sm-4">
-                        @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label" })
-                    </dt>
-                    <dd class="col-sm-8">
-                        @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control mb-3" } })
-                        @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
-                    </dd>
-                    <dt class="col-sm-4">
-                        @Html.LabelFor(model => model.ProductDescription, htmlAttributes: new { @class = "control-label" })
-                    </dt>
-                    <dd class="col-sm-8">
-                        @Html.EditorFor(model => model.ProductDescription, new { htmlAttributes = new { @class = "form-control mb-3" } })
-                        @Html.ValidationMessageFor(model => model.ProductDescription, "", new { @class = "text-danger" })
-                    </dd>
+                        <dt class="col-sm-4">
+                            @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label" })
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                            @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.LabelFor(model => model.ProductDescription, htmlAttributes: new { @class = "control-label" })
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.EditorFor(model => model.ProductDescription, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                            @Html.ValidationMessageFor(model => model.ProductDescription, "", new { @class = "text-danger" })
+                        </dd>
 
-                    <dt class="col-sm-4">
-                        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label" })
-                    </dt>
-                    <dd class="col-sm-8">
-                        @Html.EditorFor(m => m.Price, new { htmlAttributes = new { @class = "form-control mb-3" } })
-                        @Html.ValidationMessageFor(m => m.Price, "", new { @class = "text-danger" })
-                    </dd>
+                        <dt class="col-sm-4">
+                            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label" })
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.EditorFor(m => m.Price, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                            @Html.ValidationMessageFor(m => m.Price, "", new { @class = "text-danger" })
+                        </dd>
 
-                    <dt class="col-sm-4">
-                        @Html.LabelFor(model => model.StockLevel, htmlAttributes: new { @class = "control-label" })
-                    </dt>
-                    <dd class="col-sm-8">
-                        @Html.EditorFor(model => model.StockLevel, new { htmlAttributes = new { @class = "form-control mb-3" } })
-                        @Html.ValidationMessageFor(model => model.StockLevel, "", new { @class = "text-danger" })
-                    </dd>
+                        <dt class="col-sm-4">
+                            @Html.LabelFor(model => model.StockLevel, htmlAttributes: new { @class = "control-label" })
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.EditorFor(model => model.StockLevel, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                            @Html.ValidationMessageFor(model => model.StockLevel, "", new { @class = "text-danger" })
+                        </dd>
 
-                    <dt class="col-sm-4">
-                        @Html.LabelFor(model => model.SaleDifference, htmlAttributes: new { @class = "control-label" })
-                    </dt>
-                    <dd class="col-sm-8">
-                        @Html.EditorFor(model => model.SaleDifference, new { htmlAttributes = new { @class = "form-control mb-3" } })
-                        @Html.ValidationMessageFor(model => model.SaleDifference, "", new { @class = "text-danger" })
-                    </dd>
+                        <dt class="col-sm-4">
+                            @Html.LabelFor(model => model.SaleDifference, htmlAttributes: new { @class = "control-label" })
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.EditorFor(model => model.SaleDifference, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                            @Html.ValidationMessageFor(model => model.SaleDifference, "", new { @class = "text-danger" })
+                        </dd>
 
-                    <dt class="col-sm-4">
-                        @Html.LabelFor(model => model.ProductSize, htmlAttributes: new { @class = "control-label" })
-                    </dt>
-                    <dd class="col-sm-8">
-                        @Html.EditorFor(model => model.ProductSize, new { htmlAttributes = new { @class = "form-control mb-3" } })
-                        @Html.ValidationMessageFor(m => m.ProductSize, "", new { @class = "text-danger" })
-                    </dd>
+                        <dt class="col-sm-4">
+                            @Html.LabelFor(model => model.ProductSize, htmlAttributes: new { @class = "control-label" })
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.EditorFor(model => model.ProductSize, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                            @Html.ValidationMessageFor(m => m.ProductSize, "", new { @class = "text-danger" })
+                        </dd>
 
-                    @*<dt class="col-sm-4">
-                        @Html.LabelFor(model => model.OnSale, htmlAttributes: new { @class = "control-label" })
-                    </dt>
-                    <dd class="col-sm-8">
-                        @Html.CheckBoxFor(model => model.OnSale, new { htmlAttributes = new { @class = "form-control mb-3" } })
-                        @Html.ValidationMessageFor(model => model.OnSale, "", new { @class = "text-danger" })
-                    </dd>*@
+                        <dt class="col-sm-4">
+                            @Html.LabelFor(model => model.Discontinued, htmlAttributes: new { @class = "control-label" })
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.CheckBoxFor(model => model.Discontinued, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                        </dd>
 
-                    <dt class="col-sm-4">
-                        @Html.LabelFor(model => model.Discontinued, htmlAttributes: new { @class = "control-label" })
-                    </dt>
-                    <dd class="col-sm-8">
-                        @Html.CheckBoxFor(model => model.Discontinued, new { htmlAttributes = new { @class = "form-control mb-3" } })
-                    </dd>
-
-                    <dt class="col-sm-4">
-                        @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-2" })
-                    </dt>
-                    <dd class="col-sm-8">
-                        @Html.DropDownListFor(model => model.Category, Model.Categories, new { htmlAttributes = new { @class = "form-control mb-3" } })
-                    </dd>
+                        <dt class="col-sm-4">
+                            @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DropDownListFor(model => model.Category, Model.Categories, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                        </dd>
                     }
                 </dl>
             </div>
@@ -244,8 +230,6 @@
 
         <div class="form-group ms-5">
             <div class="col-md-offset-2 col-md-10">
-                @*<input type="submit" value="DELETE" class="btn btn-primary btn-lg btn-block" />*@
-
                 <!-- Add the modal trigger button here -->
                 <button type="button" class="btn btn-primary btn-lg btn-block" data-bs-toggle="modal" data-bs-target="#removeConfirmModal">
                     SAVE

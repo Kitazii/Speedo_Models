@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
+<!--SUCCESS MESSAGE-->
 @if (TempData["ConfirmationMessage"] != null)
 {
     <br />
@@ -16,6 +17,7 @@
     <br />
 }
 
+<!--Displays Manage Products page-->
 <div class="container-fluid px-4">
     <div class="card mb-4">
         <div class="card-header">
@@ -40,7 +42,7 @@
                         || (User.IsInRole("Assistant Manager"))
                         || (User.IsInRole("Stock Control Manager")))
                         {
-                        <th>Edit</th>
+                            <th>Edit</th>
                         }
                         <th>Delete</th>
                     </tr>

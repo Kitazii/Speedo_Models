@@ -6,6 +6,8 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
+<!--Deals with remove order form-->
+
 <h2 class="text-center">@Model.User.Forename's Order To View</h2>
 
 <br />
@@ -72,8 +74,6 @@
 
         <div class="form-group ms-5">
             <div class="col-md-offset-2 col-md-10">
-                @*<input type="submit" value="CANCEL" class="btn btn-primary btn-lg btn-block" />*@
-
                 <!-- Add the modal trigger button here -->
                 @if (Model.Status.Equals(Status.Delivered))
                 {
@@ -92,6 +92,7 @@
         </div>
     </div>
 
+    <!--Both cancel and delete dialogs are pop-up confirmation windows-->
     <script type="text/javascript">
         function CancelConfirmationDialog() {
             if (confirm("You will now be refunded the FULL balance & your order will be cancelled\nAre you sure you wish to proceed?"))

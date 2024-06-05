@@ -5,14 +5,12 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
+<!--Deals with displaying order details-->
+
 <h2 class="text-center">@Model.User.Forename's Order To View</h2>
 
 <br />
 <hr />
-
-@*@using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()*@
 
 <div class="container-fluid px-4">
     <div class="card mb-4">
@@ -56,53 +54,8 @@
         </div>
     </div>
 </div>
-<!--<div class="container">-->
-@*@Html.HiddenFor(model => model.OldRole)*@
-<!--<div class="row">
-        <div class="col-md-6">
-            <dl class="row White-Text">
-                <dt class="col-sm-4">
-                    @*@Html.DisplayNameFor(model => model.OrderLines.)*@
-                </dt>
-                <dd class="col-sm-8">
-                    19
-                </dd>
-
-                <dt class="col-sm-4">
-                    Product Name
-                </dt>
-                <dd class="col-sm-8">
-                    Controller
-                </dd>
-
-                <dt class="col-sm-4">
-                    Product Category
-                </dt>
-                <dd class="col-sm-8">
-                    Tools
-                </dd>
-
-                <dt class="col-sm-4">
-                    Quantity
-                </dt>
-                <dd class="col-sm-8">
-                    1
-                </dd>
-
-                <dt class="col-sm-4">
-                    Total
-                </dt>
-                <dd class="col-sm-8">
-                    19.99
-                </dd>
-            </dl>
-        </div>
-    </div>
-</div>-->
-
 
 <br />
-
 
 <div class="d-flex justify-content-center d-inline">
 

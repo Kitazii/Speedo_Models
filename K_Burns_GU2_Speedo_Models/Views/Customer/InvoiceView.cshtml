@@ -6,6 +6,7 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
+<!-- Style additions -->
 <style>
     .this-border {
         border: 2px solid #000000;
@@ -17,6 +18,7 @@
 
 </style>
 
+<!--Displays the invoice view-->
 <section class="h-100 gradient-custom">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -30,6 +32,8 @@
                             <p class="lead fw-normal mb-0" style="color: green;">Receipt</p>
                             <p class="small text-muted mb-0">Receipt Voucher : 1KAU9-84UIL</p>
                         </div>
+
+                        <!--Loops through and displays the orderline details-->
                         @foreach (var item in Model.OrderLines)
                         {
                             <div class="card shadow-0 border mb-4">
@@ -110,6 +114,8 @@
                                 </div>
                             </div>
                         }
+
+                        <!-- More Details about the order and invoice-->
                         <div class="d-flex justify-content-between pt-2">
                             <p class="fw-bold mb-0">Order Details</p>
                         </div>
@@ -132,7 +138,6 @@
                          style="background-color: green; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
                         <div class="d-flex align-items-center justify-content-between">
                             <input type="button" value="Print Invoice" class="btn btn-primary btn-lg btn-block btn-border" onclick="window.print();" />
-                            @*@Html.ActionLink("Print Invoice", "OrderConfirmed", "Shop", new { @class = "btn btn-primary btn-lg btn-block btn-border" })*@
                             <h5 class="text-white text-uppercase mb-0">
                                 Total paid: <span class="h2 mb-0 ms-2">£@Model.Order.TotalAmount</span>
                             </h5>

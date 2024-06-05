@@ -2,16 +2,18 @@
 @using K_Burns_GU2_Speedo_Models.Models.ViewModels
 
 @{
-    ViewBag.Title = "Admin";
+    ViewBag.Title = "Advanced Dashboard";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
+<!--Displays advanced dashboard-->
 <main>
     <div class="container-fluid px-4">
         <h1 class="mt-4">@ViewBag.RoleName Dashboard</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active">Dashboard</li>
         </ol>
+        <!--Deals with forms for each report-->
         <div class="row">
             <div class="col-xl-3 col-md-6">
                 <div class="card bg-primary text-white mb-4">
@@ -63,6 +65,7 @@
                 </div>
             </div>
         </div>
+        <!--Deals with displaying all the users in the system Organised by either EMPLOYEE or CUSTOMER-->
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>

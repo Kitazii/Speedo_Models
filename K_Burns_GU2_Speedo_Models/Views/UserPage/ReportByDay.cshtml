@@ -6,6 +6,8 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
+<!--Displays report by day page-->
+
 <h2 class="text-center">@Model.ReportType Report</h2>
 
 <br />
@@ -170,6 +172,7 @@
 
 <br />
 
+<!--Deals with the colour depending on the report type-->
 <div class="d-flex justify-content-center d-inline">
 
     <p>@Html.ActionLink("Back to Unsorted Reports Page", $"{@Model.ReportType}Report", null, new { @class = "links-colors" })</p>

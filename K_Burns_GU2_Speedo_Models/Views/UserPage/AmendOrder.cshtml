@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
+<!--ALERT MESSAGE-->
 @if (TempData["AlertMessage"] != null)
 {
     <br />
@@ -16,6 +17,7 @@
     <br />
 }
 
+<!--Displays and deals with the amended order form-->
 <h2 class="text-center">@Model.User.Forename's Order To View</h2>
 
 <br />
@@ -43,16 +45,6 @@
                             <th>Save Changes</th>
                         </tr>
                     </thead>
-                    @*<tfoot>
-                            <tr>
-                                <th>@Html.DisplayNameFor(model => model.OrderLines.FirstOrDefault().Product.ProductId)</th>
-                                <th>@Html.DisplayNameFor(model => model.OrderLines.FirstOrDefault().Product.ProductName)</th>
-                                <th>@Html.DisplayNameFor(model => model.OrderLines.FirstOrDefault().Product.Category.CategoryName)</th>
-                                <th>@Html.DisplayNameFor(model => model.OrderLines.FirstOrDefault().Quantity)</th>
-                                <th>@Html.DisplayNameFor(model => model.OrderLines.FirstOrDefault().LineTotal)</th>
-                                <th></th>
-                            </tr>
-                        </tfoot>*@
                     <tbody>
                         @for (int i = 0; i < Model.OrderLines.Count; i++)
                         {
@@ -86,6 +78,7 @@
     </div>
 }
 
+<!--Deals with displaying a popup confirmation window-->
 <script type="text/javascript">
     function ConfirmationDialog() {
         if (confirm("Customer will now be charged the new 'Final Total Cost' balance\nAre you sure you wish to proceed?"))

@@ -6,6 +6,7 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
+<!--Makes a 'Delete user' Form-->
 <h2 class="text-center">Delete @Model.Forename</h2>
 
 <br />
@@ -16,7 +17,6 @@
     @Html.AntiForgeryToken()
 
     <div class="container">
-        @*@Html.HiddenFor(model => model.OldRole)*@
         <h4 class="text-center White-Text">Are you sure you want to delete this user?</h4>
         <hr />
         <div class="row">
@@ -130,13 +130,11 @@
     <br />
 
     <div class="d-flex justify-content-center d-inline">
+        <p>@Html.ActionLink("Back to Manage Employees", "ManageEmployees", null, new { @class = "links-colors" })</p>
 
-    <p>@Html.ActionLink("Back to Manage Employees", "ManageEmployees", null, new { @class = "links-colors" })</p>
-
+        <!--Deals with the submission of the form-->
         <div class="form-group ms-5">
             <div class="col-md-offset-2 col-md-10">
-                @*<input type="submit" value="DELETE" class="btn btn-primary btn-lg btn-block" />*@
-
                 <!-- Add the modal trigger button here -->
                 <button type="button" class="btn btn-primary btn-lg btn-block" data-bs-toggle="modal" data-bs-target="#removeConfirmModal">
                     DELETE

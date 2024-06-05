@@ -5,37 +5,7 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
-<style>
-
-    .lightRed-btn-sm {
-        border: 2px solid black;
-        background-color: red;
-        color: white;
-        font-size: 15px;
-    }
-
-    .darkRed-btn-sm {
-        border: 2px solid black;
-        background-color: darkred;
-        color: white;
-        font-size: 15px;
-    }
-
-    .green-btn-sm {
-        border: 2px solid black;
-        background-color: green;
-        color: white;
-        font-size: 15px;
-    }
-
-    .darkOrange-btn-sm {
-        border: 2px solid black;
-        background-color: darkorange;
-        color: white;
-        font-size: 15px;
-    }
-</style>
-
+<!--ALERT MESSAGE-->
 @if (TempData["AlertMessage"] != null)
 {
     <br />
@@ -47,6 +17,7 @@
     <br />
 }
 
+<!--SUCCESS MESSAGE-->
 @if (TempData["ConfirmationMessage"] != null)
 {
     <br />
@@ -58,6 +29,7 @@
     <br />
 }
 
+<!-- Displays Manage Employees details-->
 <div class="container-fluid px-4">
     <div class="card mb-4">
         <div class="card-header">

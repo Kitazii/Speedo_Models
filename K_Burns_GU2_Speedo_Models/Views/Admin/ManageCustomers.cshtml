@@ -5,29 +5,7 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
-<style>
-    .darkRed-btn-sm {
-        border: 2px solid black;
-        background-color: darkred;
-        color: white;
-        font-size: 15px;
-    }
-
-    .green-btn-sm {
-        border: 2px solid black;
-        background-color: green;
-        color: white;
-        font-size: 15px;
-    }
-
-    .darkOrange-btn-sm {
-        border: 2px solid black;
-        background-color: darkorange;
-        color: white;
-        font-size: 15px;
-    }
-</style>
-
+<!--SUCCESS MESSAGE-->
 @if (TempData["ConfirmationMessage"] != null)
 {
     <br />
@@ -39,6 +17,7 @@
     <br />
 }
 
+<!-- Displays Manage Customers details-->
 <div class="container-fluid px-4">
     <div class="card mb-4">
         <div class="card-header">

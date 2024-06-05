@@ -6,6 +6,7 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
+<!--Displays normal dashboard with no reports-->
 <main>
     <div class="container-fluid px-4">
         <h1 class="mt-4">@ViewBag.RoleName Dashboard</h1>
@@ -29,16 +30,6 @@
                             <th>@Html.DisplayNameFor(model => model.IsActive)</th>
                         </tr>
                     </thead>
-                    @*<tfoot>
-                            <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Status</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
-                            </tr>
-                        </tfoot>*@
                     <tbody>
                         @foreach (var item in Model)
                         {

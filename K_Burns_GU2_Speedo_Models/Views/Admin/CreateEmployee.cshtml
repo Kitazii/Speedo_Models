@@ -4,6 +4,7 @@
     ViewBag.Title = "CreateEmployee";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
+<!--Makes a 'Create Employee' Form-->
 
 <h2 class="text-center">Create Employee</h2>
 
@@ -145,8 +146,7 @@
     </div>
 
     <div class="d-flex justify-content-center d-inline">
-        <p>@Html.ActionLink("Back to Manage Employees", "ManageEmployees", new { @class = "links-colors" })</p>
-
+        <!--Deals with the submission of the form-->
         <div class="form-group ms-5">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="CREATE" class="btn btn-primary btn-lg btn-block" onclick="return ConfirmationDialog()" />
@@ -154,7 +154,7 @@
         </div>
     </div>
 
-
+    <!--Creates a confirmation dialog script-->
     <script type="text/javascript">
         function ConfirmationDialog() {
             if (confirm("Are you sure to create this employee?"))
