@@ -1,0 +1,257 @@
+﻿@model K_Burns_GU2_Speedo_Models.Models.ViewModels.BasketShippingViewModel
+@{
+    ViewBag.Title = "Checkout";
+    var basketItems = Model.Basket.BasketItems;
+}
+
+<!-- Style additions -->
+<style>
+    .this-border {
+        border: 2px solid #000000;
+    }
+
+    .button-height {
+        height: 40px;
+    }
+
+    .resized-image {
+        width: 183px; /* Example width */
+        height: 213px; /* Maintain aspect ratio */
+    }
+
+    /*Get Rid Of The Up Down Arrows in NUMBER TYPE*/
+    /* For Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* For Firefox */
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
+</style>
+
+<!-- Displays Checkout page-->
+<section class="h-100 gradient-custom">
+    <div class="container py-5">
+        <!--ALERT MESSAGE-->
+        @if (TempData["AlertMessage"] != null)
+        {
+            <br />
+
+            <div class="alert alert-danger">
+                <strong>@TempData["AlertMessage"]</strong>
+            </div>
+
+            <br />
+        }
+        <div class="row d-flex justify-content-center my-4">
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <div class="card-header py-3 this-border" style="border-bottom: none;">
+                        <h5 class="mb-0">Basket - @Model.Basket.BasketSize items</h5>
+                    </div>
+                    @foreach (var item in Model.Basket.BasketItems)
+                    {
+                        <div class="card-body this-border" data-product-id="@item.Product.ProductId" style="border-top: none;">
+                            <!-- Single item -->
+                            <div class="row">
+                                <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                                    <!-- Image -->
+                                    <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                                        <img class="img-fluid resized-image" src="@item.Product.ImageUrl" alt="Product Image" />
+                                        <a href="#!">
+                                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                                        </a>
+                                    </div>
+                                    <!-- Image -->
+                                </div>
+
+
+                                <div class="col-lg-5 col-md-6 mb-4 mb-lg-0 form-group">
+                                    <!-- Data -->
+                                    @if (item.Product.StockLevel <= 5)
+                                    {
+                                        <p><strong>@item.Product.ProductName - </strong><strong style="color:red">STOCK LEVEL LOW</strong></p>
+                                    }
+                                    else
+                                    {
+                                        <p><strong>@item.Product.ProductName</strong></p>
+                                    }
+                                    <p>Category: @item.Product.Category.CategoryName</p>
+                                    <p style="margin-bottom:0px;"><strong>Product Description:</strong></p>
+                                    <ul>
+                                        <li>@item.Product.ProductDescription</li>
+                                    </ul>
+                                    <!--Submit Remove Item Form-->
+                                    @using (Html.BeginForm("RemoveItem", "Checkout", FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <button class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip"
+                                                title="Remove item" type="submit" name="BasketItemId" value="@item.BasketItemId">
+                                            <i class="fas fa-trash"><img src="~/Images/Icons/trash_closed.png" /></i>
+                                        </button>
+                                    }
+                                    <!-- Data -->
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                                    <!-- Quantity -->
+                                    <div class="d-flex mb-4" style="max-width: 300px">
+
+                                        <!--Submit Decrement Checkout Form-->
+                                        @using (Html.BeginForm("DecrementCheckout", "Checkout", FormMethod.Post))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <button class="btn btn-primary px-3 me-2 button-height btn-minus" type="submit" name="BasketItemId" value="@item.BasketItemId">
+                                                <i class="fas fa-minus">-</i>
+                                            </button>
+                                        }
+
+                                        <div class="form-outline">
+                                            <input id="quantity_@item.Product.ProductId" min="1" name="quantity" value="@item.Quantity" type="number" class="form-control text-center" disabled />
+                                            <label class="form-label d-flex justify-content-center" for="quantity_@item.Product.ProductId">Quantity</label>
+                                        </div>
+
+                                        <!--Submit Increment Checkout Form-->
+                                        @using (Html.BeginForm("IncrementCheckout", "Checkout", FormMethod.Post))
+                                        {
+                                            @Html.AntiForgeryToken()
+
+                                            <!--Passing the orderlineid to the post-->
+                                            <button class="btn btn-primary px-3 ms-2 button-height btn-plus" type="submit" name="BasketItemId" value="@item.BasketItemId">
+                                                <i class="fas fa-plus">+</i>
+                                            </button>
+
+                                        }
+                                    </div>
+                                    <!-- Price -->
+                                    <p class="text-start text-md-center product-price" data-product-id="@item.Product.ProductId">
+                                        <strong>£<span class="price-value">@item.ItemTotal</span></strong>
+                                    </p>
+                                    <!-- Price -->
+                                </div>
+
+                            </div>
+                            <hr class="my-4" />
+                        </div>
+                    }
+
+                </div>
+
+                <!-- Submit Load Payment Form -->
+                @using (Html.BeginForm("LoadPayment", "Payment", FormMethod.Post, new { id = "paymentForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.ShippingInfo.ShippingCost)
+                    <div class="card mb-4 form-group">
+                        <div class="card-body this-border">
+                            <p><strong>Shipping Delivery</strong></p>
+                            <p class="mb-0 opacity-50 d-inline">Shipping Address, the same as home address?</p>
+                            @Html.CheckBoxFor(model => model.ShippingInfo.ShippingToHomeAddress)
+
+                        </div>
+                    </div>
+
+                    <!-- Shipping Info -->
+                    <div class="card mb-4 form-group">
+                        <div class="card-body this-border">
+                            <p><strong>Shipping Details</strong></p>
+                            <p class="opacity-50 d-inline">Only Applicable If Shipping Address Is Different From Home Address</p>
+
+                            @if (Model.PageReloaded)
+                            {
+                                <p class="text-danger"><strong>All Shipping Details Fields Must Be Filled</strong></p>
+                            }
+                            <dl class="row White-Text mt-4">
+                                <dt class="col-sm-4">
+                                    @Html.LabelFor(model => model.ShippingInfo.ShippingStreet, htmlAttributes: new { @class = "control-label" })
+                                </dt>
+                                <dd class="col-sm-8">
+                                    @Html.EditorFor(model => model.ShippingInfo.ShippingStreet, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                                    @Html.ValidationMessageFor(model => model.ShippingInfo.ShippingStreet, "", new { @class = "text-warning" })
+                                </dd>
+
+                                <dt class="col-sm-4">
+                                    @Html.LabelFor(model => model.ShippingInfo.ShippingCity, htmlAttributes: new { @class = "control-label" })
+                                </dt>
+                                <dd class="col-sm-8">
+                                    @Html.EditorFor(model => model.ShippingInfo.ShippingCity, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                                </dd>
+
+                                <dt class="col-sm-4">
+                                    @Html.LabelFor(model => model.ShippingInfo.ShippingPostcode, htmlAttributes: new { @class = "control-label" })
+                                </dt>
+                                <dd class="col-sm-8">
+                                    @Html.EditorFor(model => model.ShippingInfo.ShippingPostcode, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-body this-border">
+                            <p><strong>Expected shipping delivery</strong></p>
+                            <p class="mb-0 opacity-50">Between @DateTime.Now.AddDays(4).ToString("d MMMM yy") & @DateTime.Now.AddDays(5).ToString("d MMMM yy")</p>
+                        </div>
+                    </div>
+                    <div class="card mb-4 mb-lg-0">
+                        <div class="card-body this-border">
+                            <p><strong>We accept</strong></p>
+                            <img class="me-2" style="width: 45px;"
+                                 src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
+                                 alt="Visa" />
+                            <img class="me-2" style="width: 45px;"
+                                 src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
+                                 alt="American Express" />
+                            <img class="me-2" style="width: 45px;"
+                                 src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
+                                 alt="Mastercard" />
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Summary page -->
+            <div class="col-md-4">
+                <div class="card mb-4 this-border">
+                    <div class="card-header py-3">
+                        <h5 class="mb-0">Summary</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="d-flex justify-content-between align-items-center px-0">
+                                Products
+                                <span id="basketTotal">£@Model.Basket.BasketTotal</span>
+                            </li>
+                            <li class="d-flex justify-content-between align-items-center px-0">
+                                Shipping
+                                <span>£@Model.ShippingInfo.ShippingCost</span>
+                            </li>
+                            <hr />
+                            <li class="d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                                <div>
+                                    <strong>Total amount</strong>
+                                    <p class="mb-0"><strong>(including VAT)</strong></p>
+                                </div>
+                                <span id="totalAmount"><strong>£@Model.Basket.TotalAmount</strong></span>
+                            </li>
+                        </ul>
+
+                        <div class="text-center form-group">
+                            <button id="submitPaymentForm" class="btn btn-primary px-3 ms-2 button-height btn-plus" type="submit">Go To Payment</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.getElementById('submitPaymentForm').addEventListener('click', function () {
+        document.getElementById('paymentForm').submit();
+    });
+</script>

@@ -1,0 +1,187 @@
+﻿@model K_Burns_GU2_Speedo_Models.Models.ViewModels.InvoiceViewModel
+@using K_Burns_GU2_Speedo_Models.Models
+
+@{
+    ViewBag.Title = "Delete Invoice";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!--Deals with deleting invoices form-->
+<h2 class="text-center">Delete @Model.User.Forename's Invoice</h2>
+
+<br />
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <h4 class="text-center White-Text">Are you sure you want to delete this invoice?</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                <h5 class="opacity-50 mb-3">USER DETAILS</h5>
+                <dl class="row White-Text">
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.User.Forename)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.User.Forename)
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.User.Surname)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.User.Surname)
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.User.Email)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.User.Email)
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.User.UserName)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.User.UserName)
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.User.PhoneNumber)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.User.PhoneNumber)
+                    </dd>
+                </dl>
+                <h5 class="opacity-50 mb-3">SHIPPING DETAILS</h5>
+                <dl class="row White-Text">
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Shipping.ShippingStreet)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Shipping.ShippingStreet)
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Shipping.ShippingCity)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Shipping.ShippingCity)
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Shipping.ShippingPostcode)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Shipping.ShippingPostcode)
+                    </dd>
+
+                    @if (Model.Invoice.Order.User is Customer customer)
+                    {
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(modelCustomer => customer.CustomerType)
+                        </dt>
+                        <dd class="col-sm-8 fw-bold">
+                            @Html.DisplayFor(modelCustomer => customer.CustomerType)
+                        </dd>
+                    }
+
+                </dl>
+            </div>
+            <div class="col-md-6">
+                <h5 class="opacity-50 mb-3">RECEIPT DETAILS</h5>
+                <dl class="row White-Text">
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Invoice.InvoiceId)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Invoice.InvoiceId)
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Invoice.InvoiceDate)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Invoice.InvoiceDate)
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.OrderLines)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DropDownListFor(model => model.OrderLines, Model.OrderLineItems, new { htmlAttributes = new { @class = "form-control" } })
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Order.OrderId)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Order.OrderId)
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Invoice.ReceiptsVoucher)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Invoice.ReceiptsVoucher)
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Order.OrderTotal)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Order.OrderTotal)
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Shipping.ShippingCost)
+                    </dt>
+                    <dd class="col-sm-8">
+                        £@Html.DisplayFor(model => model.Shipping.ShippingCost)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="d-flex justify-content-center d-inline">
+        <p>@Html.ActionLink("Back to Manage Invoices", "ManageInvoices", null, new { @class = "links-colors" })</p>
+
+        <div class="form-group ms-5">
+            <div class="col-md-offset-2 col-md-10">
+                <!-- Add the modal trigger button here -->
+                <button type="button" class="btn btn-primary btn-lg btn-block" data-bs-toggle="modal" data-bs-target="#removeConfirmModal">
+                    DELETE
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Remove Confirm Modal -->
+    <div class="modal fade" id="removeConfirmModal" tabindex="-1" aria-labelledby="removeConfirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="removeConfirmModalLabel">Delete Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="background-color: lightgray">
+                    <p>
+                        Are you sure you want to delete this users invoice?
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <input type="submit" value="Delete" class="btn btn-danger" />
+                </div>
+            </div>
+        </div>
+    </div>
+}

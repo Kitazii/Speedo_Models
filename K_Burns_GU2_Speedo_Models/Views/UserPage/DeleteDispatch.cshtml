@@ -1,0 +1,160 @@
+﻿@model K_Burns_GU2_Speedo_Models.Models.ViewModels.DispatchViewModel
+@using K_Burns_GU2_Speedo_Models.Models
+
+@{
+    ViewBag.Title = "Delete Dispatch";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!--Deals with deleting dispatches form-->
+<h2 class="text-center">Delete @Model.User.Forename's Dispatch Details</h2>
+
+<br />
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <h4 class="text-center White-Text">Are you sure you want to delete these dispatch details?</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                <h5 class="opacity-50 mb-3">ORDER DETAILS</h5>
+                <dl class="row White-Text">
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Order.OrderId)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Order.OrderId)
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Order.OrderDate)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Order.OrderDate)
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.OrderLines)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DropDownListFor(model => model.OrderLines, Model.OrderLineItems, new { htmlAttributes = new { @class = "form-control" } })
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Order.TotalAmount)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Order.TotalAmount)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Order.Status)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Order.Status)
+                    </dd>
+                </dl>
+                <h5 class="opacity-50 mb-3">SHIPPING DETAILS</h5>
+                <dl class="row White-Text">
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Parcel.Method)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Parcel.Method)
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.DeliveryName)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.DeliveryName)
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.DeliveryAddress)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.DeliveryAddress)
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-md-6">
+                <h5 class="opacity-50 mb-3">PARCEL DETAILS</h5>
+                <dl class="row White-Text">
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Parcel.ParcelType)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Parcel.ParcelType)
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Parcel.Weight)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Parcel.Weight)
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Parcel.Width)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Parcel.Width)
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Parcel.Height)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Parcel.Height)
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Parcel.Length)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Parcel.Length)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="d-flex justify-content-center d-inline">
+        <p>@Html.ActionLink("Back to Manage Dispatches", "ManageDispatches", null, new { @class = "links-colors" })</p>
+
+        <div class="form-group ms-5">
+            <div class="col-md-offset-2 col-md-10">
+                <!-- Add the modal trigger button here -->
+                <button type="button" class="btn btn-primary btn-lg btn-block" data-bs-toggle="modal" data-bs-target="#removeConfirmModal">
+                    DELETE
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Remove Confirm Modal -->
+    <div class="modal fade" id="removeConfirmModal" tabindex="-1" aria-labelledby="removeConfirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="removeConfirmModalLabel">Delete Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="background-color: lightgray">
+                    <p>
+                        Are you sure you want to delete this dispatch information?
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <input type="submit" value="Delete" class="btn btn-danger" />
+                </div>
+            </div>
+        </div>
+    </div>
+}

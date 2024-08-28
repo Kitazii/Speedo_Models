@@ -1,0 +1,56 @@
+﻿@model IEnumerable<K_Burns_GU2_Speedo_Models.Models.Invoice>
+@using K_Burns_GU2_Speedo_Models.Models
+
+@{
+    ViewBag.Title = "My Invoices";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!--ALERT MESSAGE-->
+@if (TempData["AlertMessage"] != null)
+{
+    <br />
+
+    <div class="alert alert-warning">
+        <strong>@TempData["AlertMessage"]</strong>
+    </div>
+
+    <br />
+}
+
+<!--Displays current customer invoices-->
+<div class="container-fluid px-4">
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            My Invoices
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.InvoiceId)</th>
+                        <th>@Html.DisplayNameFor(model => model.InvoiceDate)</th>
+                        <th>@Html.DisplayNameFor(model => model.ReceiptsVoucher)</th>
+                        <th>@Html.DisplayNameFor(model => model.Order.ShippingInfo.ShippingPostcode)</th>
+                        <th>View</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.InvoiceId)</td>
+                            <td>@Html.DisplayFor(modelItem => item.InvoiceDate)</td>
+                            <td>@Html.DisplayFor(modelItem => item.ReceiptsVoucher)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Order.ShippingInfo.ShippingPostcode)</td>
+                            <td>
+                                @Html.ActionLink("View", "InvoiceView", new { invoiceId = item.InvoiceId }, new { @class = "btn btn-outline-secondary green-btn-sm" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

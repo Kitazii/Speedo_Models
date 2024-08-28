@@ -1,0 +1,57 @@
+﻿@model IEnumerable<K_Burns_GU2_Speedo_Models.Models.User>
+@using K_Burns_GU2_Speedo_Models.Models
+
+@{
+    ViewBag.Title = "Dashboard Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!--Displays normal dashboard with no reports-->
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">@*@ViewBag.RoleName*@Employee Dashboard</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                All Users
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Forename)</th>
+                            <th>@Html.DisplayNameFor(model => model.UserName)</th>
+                            <th>@Html.DisplayNameFor(model => model.CurrentRole)</th>
+                            <th>Status</th>
+                            <th>@Html.DisplayNameFor(model => model.RegisteredAt)</th>
+                            <th>@Html.DisplayNameFor(model => model.IsActive)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Forename)</td>
+                                <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                                <td>@Html.DisplayFor(modelItem => item.CurrentRole)</td>
+                                @if (item is Customer customer)
+                                {
+                                    <td>@Html.DisplayFor(_ => customer.CustomerType)</td>
+                                }
+                                else if (item is K_Burns_GU2_Speedo_Models.Models.Employee employee)
+                                {
+                                    <td>@Html.DisplayFor(_ => employee.EmployementStatus)</td>
+                                }
+                                <td>@Html.DisplayFor(modelItem => item.RegisteredAt)</td>
+                                <td>@Html.DisplayFor(modelItem => item.IsActive)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>

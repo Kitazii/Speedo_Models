@@ -1,0 +1,168 @@
+﻿@model K_Burns_GU2_Speedo_Models.Models.ViewModels.CreateEmployeeViewModel
+
+@{
+    ViewBag.Title = "CreateEmployee";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<!--Makes a 'Create Employee' Form-->
+
+<h2 class="text-center">Create Employee</h2>
+
+<br />
+<hr />
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row ms-3">
+        <div class="col-md-6 form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label White-Text" })
+                </div>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label White-Text" })
+                </div>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    @Html.LabelFor(model => model.Street, htmlAttributes: new { @class = "control-label White-Text" })
+                </div>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.Street, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                    @Html.ValidationMessageFor(model => model.Street, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label White-Text" })
+                </div>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                    @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    @Html.LabelFor(model => model.Postcode, htmlAttributes: new { @class = "control-label White-Text" })
+                </div>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.Postcode, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                    @Html.ValidationMessageFor(model => model.Postcode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label White-Text" })
+                </div>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label White-Text" })
+                </div>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    @Html.LabelFor(model => model.PhoneConfirm, htmlAttributes: new { @class = "control-label White-Text" })
+                </div>
+                <div class="col-sm-6">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.PhoneConfirm, new { htmlAttributes = new { @class = "mb-3" } })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    @Html.LabelFor(model => model.Salary, htmlAttributes: new { @class = "control-label White-Text" })
+                </div>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.Salary, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                    @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label White-Text" })
+                </div>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label White-Text" })
+                </div>
+                <div class="col-sm-6">
+                    @Html.EnumDropDownListFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <div class="form-group row mt-3">
+                <div class="col-sm-4">
+                    @Html.LabelFor(model => model.Position, htmlAttributes: new { @class = "control-label White-Text" })
+                </div>
+                <div class="col-sm-6">
+                    @Html.DropDownListFor(model => model.Position, Model.Positions, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <br />
+            <br />
+
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center d-inline">
+        <!--Deals with the submission of the form-->
+        <div class="form-group ms-5">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="CREATE" class="btn btn-primary btn-lg btn-block" onclick="return ConfirmationDialog()" />
+            </div>
+        </div>
+    </div>
+
+    <!--Creates a confirmation dialog script-->
+    <script type="text/javascript">
+        function ConfirmationDialog() {
+            if (confirm("Are you sure to create this employee?"))
+                return true;
+            else
+                return false;
+        }
+    </script>
+
+}
+

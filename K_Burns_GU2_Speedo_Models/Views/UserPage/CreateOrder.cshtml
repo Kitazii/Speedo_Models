@@ -1,0 +1,113 @@
+﻿@model K_Burns_GU2_Speedo_Models.Models.ViewModels.CreateOrderViewModel
+@using K_Burns_GU2_Speedo_Models.Models
+
+@{
+    ViewBag.Title = "Create Order";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+@if (TempData["AlertMessage"] != null)
+{
+    <br />
+
+    <div class="alert alert-warning">
+        <strong>@TempData["AlertMessage"]</strong>
+    </div>
+
+    <br />
+}
+
+<h2 class="text-center">Create Order</h2>
+
+<br />
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <h4 class="text-center White-Text">User must exist before creating order!</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                <h5 class="opacity-50 mb-3">ORDER DETAILS</h5>
+                <dl class="row White-Text">
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.User.UserName, htmlAttributes: new { @class = "control-label White-Text" })
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.EditorFor(model => model.User.UserName, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                        @Html.ValidationMessageFor(model => model.User.UserName, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.User.UserName)
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.Order.Status, htmlAttributes: new { @class = "control-label White-Text" })
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.EnumDropDownListFor(model => model.Order.Status, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-md-6">
+                <h5 class="opacity-50 mb-3">PRODUCT DETAILS</h5>
+                <dl class="row White-Text">
+                    @for (int i = 0; i < Model.OrderLines.Count; i++)
+                    {
+                        <dt class="col-sm-4">
+                            @Html.LabelFor(m => m.OrderLines[i].Product.ProductId, htmlAttributes: new { @class = "control-label White-Text" })
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.EditorFor(m => m.OrderLines[i].Product.ProductId, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                            @Html.ValidationMessageFor(m => m.OrderLines[i].Product.ProductId, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(m => m.OrderLines[i].Product.ProductId)
+                        </dd>
+
+                        <dt class="col-sm-4">
+                            @Html.LabelFor(m => m.OrderLines[i].Quantity, htmlAttributes: new { @class = "control-label White-Text" })
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.EditorFor(m => m.OrderLines[i].Quantity, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                            @Html.ValidationMessageFor(m => m.OrderLines[i].Quantity, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(m => m.OrderLines[i].Quantity)
+                        </dd>
+                    }
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="d-flex justify-content-center d-inline">
+        <div class="form-group ms-5">
+            <div class="col-md-offset-2 col-md-10">
+                <!-- Add the modal trigger button here -->
+                <button type="button" class="btn btn-primary btn-lg btn-block" data-bs-toggle="modal" data-bs-target="#createConfirmModal">
+                    CREATE
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Remove Confirm Modal -->
+    <div class="modal fade" id="createConfirmModal" tabindex="-1" aria-labelledby="createConfirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createConfirmModalLabel">Create Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="background-color: lightgray">
+                    <p>
+                        Are you sure you want to create this order?
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <input type="submit" value="Create" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+    </div>
+}

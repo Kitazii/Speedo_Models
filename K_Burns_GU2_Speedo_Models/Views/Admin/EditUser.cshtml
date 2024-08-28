@@ -1,0 +1,175 @@
+﻿@model K_Burns_GU2_Speedo_Models.Models.ViewModels.EditUserViewModel
+
+@{
+    ViewBag.Title = "Edit User";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!--Makes a 'Edit user' Form-->
+
+<h2 class="text-center">Edit A User</h2>
+
+<br />
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container">
+        <h4 class="text-center White-Text">Are you sure you want to edit this user?</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                <dl class="row White-Text">
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.UserName)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.Forename)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.TextBoxFor(m => m.Forename, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Forename, "", new { @class = "text-danger" })
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.Surname)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.TextBoxFor(m => m.Surname, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Surname, "", new { @class = "text-danger" })
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.Email)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.PhoneNumber)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.Street)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.TextBoxFor(m => m.Street, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Street, "", new { @class = "text-danger" })
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.City)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.Postcode)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.TextBoxFor(m => m.Postcode, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Postcode, "", new { @class = "text-danger" })
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.NewPassword)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.TextBoxFor(model => model.NewPassword, new { @class = "form-control" })
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.IsActive)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.CheckBoxFor(model => model.IsActive)
+                    </dd>
+
+                    @if (Model.Role != null)
+                    {
+                        <dt class="col-sm-4">
+                            @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DropDownListFor(model => model.Role, Model.Roles, new { htmlAttributes = new { @class = "form-control" } })
+                        </dd>
+
+                        <dt class="col-sm-4">
+                            @Html.LabelFor(model => model.Salary, htmlAttributes: new { @class = "control-label White-Text" })
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.EditorFor(model => model.Salary, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                            @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
+                        </dd>
+
+                        <dt class="col-sm-4">
+                            @Html.LabelFor(model => model.EmployementStatus, htmlAttributes: new { @class = "control-label White-Text" })
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.EnumDropDownListFor(model => model.EmployementStatus, new { htmlAttributes = new { @class = "form-control" } })
+                        </dd>
+                    }
+                    else
+                    {
+                        <dt class="col-sm-4">
+                            @Html.LabelFor(model => model.CustomerType, htmlAttributes: new { @class = "control-label White-Text" })
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.EnumDropDownListFor(model => model.CustomerType, new { htmlAttributes = new { @class = "form-control" } })
+                        </dd>
+                    }
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="d-flex justify-content-center d-inline">
+        <p>@Html.ActionLink("Back to Manage Employees", "ManageEmployees", null, new { @class = "links-colors" })</p>
+
+        <!--Deals with the submission of the form-->
+        <div class="form-group ms-5">
+            <div class="col-md-offset-2 col-md-10">
+                <!-- Add the modal trigger button here -->
+                <button type="button" class="btn btn-primary btn-lg btn-block" data-bs-toggle="modal" data-bs-target="#removeConfirmModal">
+                    SAVE
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Remove Confirm Modal -->
+    <div class="modal fade" id="removeConfirmModal" tabindex="-1" aria-labelledby="removeConfirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="removeConfirmModalLabel">Saving Changes</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="background-color: lightgray">
+                    <p>Are you sure you want to make changes to this user?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <input type="submit" value="SAVE CHANGES" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+    </div>
+}

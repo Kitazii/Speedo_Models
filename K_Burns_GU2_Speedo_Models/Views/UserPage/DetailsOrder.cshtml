@@ -1,0 +1,71 @@
+﻿@model K_Burns_GU2_Speedo_Models.Models.Order
+
+@{
+    ViewBag.Title = "Order Details";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!--Deals with displaying order details-->
+
+<h2 class="text-center">@Model.User.Forename's Order To View</h2>
+
+<br />
+<hr />
+
+<div class="container-fluid px-4">
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            OrderID - @Model.OrderId
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.OrderLines.FirstOrDefault().Product.ProductId)</th>
+                        <th>@Html.DisplayNameFor(model => model.OrderLines.FirstOrDefault().Product.ProductName)</th>
+                        <th>@Html.DisplayNameFor(model => model.OrderLines.FirstOrDefault().Product.Category.CategoryName)</th>
+                        <th>@Html.DisplayNameFor(model => model.OrderLines.FirstOrDefault().Quantity)</th>
+                        <th>@Html.DisplayNameFor(model => model.OrderLines.FirstOrDefault().LineTotal)</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.OrderLines.FirstOrDefault().Product.ProductId)</th>
+                        <th>@Html.DisplayNameFor(model => model.OrderLines.FirstOrDefault().Product.ProductName)</th>
+                        <th>@Html.DisplayNameFor(model => model.OrderLines.FirstOrDefault().Product.Category.CategoryName)</th>
+                        <th>@Html.DisplayNameFor(model => model.OrderLines.FirstOrDefault().Quantity)</th>
+                        <th>@Html.DisplayNameFor(model => model.OrderLines.FirstOrDefault().LineTotal)</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model.OrderLines)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Product.ProductId)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Product.ProductName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Product.Category.CategoryName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                            <td>@Html.DisplayFor(modelItem => item.LineTotal)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div class="d-flex justify-content-center d-inline">
+
+    @if (User.IsInRole("Customer"))
+    {
+        <p>@Html.ActionLink("Back to Placed Orders", "MyPlacedOrders", null, new { @class = "links-colors" })</p>
+    }
+    else
+    {
+        <p>@Html.ActionLink("Back to Placed Orders", "PlacedOrders", null, new { @class = "links-colors" })</p>
+    }
+</div>
+

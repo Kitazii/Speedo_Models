@@ -1,0 +1,83 @@
+﻿@model IEnumerable<K_Burns_GU2_Speedo_Models.Models.User>
+@using K_Burns_GU2_Speedo_Models.Models
+@{
+    ViewBag.Title = "Manage Customers";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!--SUCCESS MESSAGE-->
+@if (TempData["ConfirmationMessage"] != null)
+{
+    <br />
+
+    <div class="alert alert-success">
+        <strong>@TempData["ConfirmationMessage"]</strong>
+    </div>
+
+    <br />
+}
+
+<!-- Displays Manage Customers details-->
+<div class="container-fluid px-4">
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            All Users
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Forename)</th>
+                        <th>@Html.DisplayNameFor(model => model.UserName)</th>
+                        <th>@Html.DisplayNameFor(model => model.CurrentRole)</th>
+                        <th>Status</th>
+                        <th>@Html.DisplayNameFor(model => model.RegisteredAt)</th>
+                        <th>@Html.DisplayNameFor(model => model.IsActive)</th>
+                        <th>Details</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Forename)</th>
+                        <th>@Html.DisplayNameFor(model => model.UserName)</th>
+                        <th>@Html.DisplayNameFor(model => model.CurrentRole)</th>
+                        <th>Status</th>
+                        <th>@Html.DisplayNameFor(model => model.RegisteredAt)</th>
+                        <th>@Html.DisplayNameFor(model => model.IsActive)</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        if (item is Customer customer)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => customer.Forename)</td>
+                                <td>@Html.DisplayFor(modelItem => customer.UserName)</td>
+                                <td>@Html.DisplayFor(modelItem => customer.CurrentRole)</td>
+                                <td>@Html.DisplayFor(modelItem => customer.CustomerType)</td>
+                                <td>@Html.DisplayFor(modelItem => customer.RegisteredAt)</td>
+                                <td>@Html.DisplayFor(modelItem => customer.IsActive)</td>
+                                <td>
+                                    @Html.ActionLink("Details", "UserDetails", new { userId = customer.Id }, new { @class = "btn btn-outline-secondary green-btn-sm" })
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "EditUser", new { userId = customer.Id }, new { @class = "btn btn-outline-secondary darkOrange-btn-sm" })
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Delete", "DeleteUser", new { userId = customer.Id, isCustomer = true }, new { @class = "btn btn-outline-secondary darkRed-btn-sm" })
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

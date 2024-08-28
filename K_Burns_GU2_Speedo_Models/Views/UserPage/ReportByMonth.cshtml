@@ -1,0 +1,211 @@
+﻿@model K_Burns_GU2_Speedo_Models.Models.ViewModels.ReportsViewModel
+@using K_Burns_GU2_Speedo_Models.Models
+
+@{
+    ViewBag.Title = "Report By Month";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+
+    // Helper function to get month and year
+    Func<DateTime, string> GetMonthYear = (date) => date.ToString("yyyy-MM");
+}
+
+<!--Displays report by month page-->
+
+<h2 class="text-center">@Model.ReportType Report</h2>
+
+<br />
+<hr />
+
+
+<div class="container-fluid px-4">
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            All @Model.ReportType
+        </div>
+        @if (Model.ReportType == "Products")
+        {
+            <div class="card-body">
+                @foreach (var group in Model.Products.OrderBy(p => GetMonthYear(p.DateCreated)).GroupBy(p => GetMonthYear(p.DateCreated)))
+                {
+                    <h3>@DateTime.Parse(group.Key + "-01").ToString("MMMM yyyy")</h3> <!-- Display the month and year -->
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>@Html.DisplayNameFor(model => model.Products.FirstOrDefault().ProductId)</th>
+                                <th>@Html.DisplayNameFor(model => model.Products.FirstOrDefault().ProductName)</th>
+                                <th>@Html.DisplayNameFor(model => model.Products.FirstOrDefault().ProductDescription)</th>
+                                <th>@Html.DisplayNameFor(model => model.Products.FirstOrDefault().ProductSize)</th>
+                                <th>@Html.DisplayNameFor(model => model.Products.FirstOrDefault().Price)</th>
+                                <th>@Html.DisplayNameFor(model => model.Products.FirstOrDefault().DiscountPrice)</th>
+                                <th>@Html.DisplayNameFor(model => model.Products.FirstOrDefault().StockLevel)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in group)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.ProductId)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.ProductDescription)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.ProductSize)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                                    @if (item.OnSale)
+                                    {
+                                        <td>@Html.DisplayFor(modelItem => item.DiscountPrice)</td>
+                                    }
+                                    else
+                                    {
+                                        <td>N/A</td>
+                                    }
+                                    <td>@Html.DisplayFor(modelItem => item.StockLevel)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            </div>
+        }
+        @if (Model.ReportType == "Orders")
+        {
+            <div class="card-body">
+                @foreach (var group in Model.Orders.OrderBy(o => GetMonthYear(o.OrderDate)).GroupBy(o => GetMonthYear(o.OrderDate)))
+                {
+                    <h3>@DateTime.Parse(group.Key + "-01").ToString("MMMM yyyy")</h3> <!-- Display the month and year -->
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>@Html.DisplayNameFor(model => model.Orders.FirstOrDefault().OrderId)</th>
+                                <th>@Html.DisplayNameFor(model => model.Orders.FirstOrDefault().OrderDate)</th>
+                                <th>@Html.DisplayNameFor(model => model.Orders.FirstOrDefault().OrderTotal) (Before Shipping)</th>
+                                <th>@Html.DisplayNameFor(model => model.Orders.FirstOrDefault().User.UserName)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in group)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.OrderId)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.OrderDate)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.OrderTotal)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.User.UserName)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            </div>
+        }
+        @if (Model.ReportType == "Invoices")
+        {
+            <div class="card-body">
+                @foreach (var group in Model.Invoices.OrderBy(i => GetMonthYear(i.InvoiceDate)).GroupBy(i => GetMonthYear(i.InvoiceDate)))
+                {
+                    <h3>@DateTime.Parse(group.Key + "-01").ToString("MMMM yyyy")</h3> <!-- Display the month and year -->
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>@Html.DisplayNameFor(model => model.Invoices.FirstOrDefault().InvoiceId)</th>
+                                <th>@Html.DisplayNameFor(model => model.Invoices.FirstOrDefault().InvoiceDate)</th>
+                                <th>@Html.DisplayNameFor(model => model.Invoices.FirstOrDefault().Order.TotalAmount) (including shipping)</th>
+                                <th>@Html.DisplayNameFor(model => model.Invoices.FirstOrDefault().Order.User.UserName)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in group)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.InvoiceId)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.InvoiceDate)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Order.TotalAmount)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Order.User.UserName)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            </div>
+        }
+        @if (Model.ReportType == "Users")
+        {
+            <div class="card-body">
+                @foreach (var group in Model.Users.OrderBy(u => GetMonthYear(u.RegisteredAt)).GroupBy(u => GetMonthYear(u.RegisteredAt)))
+                {
+                    <h3>@DateTime.Parse(group.Key + "-01").ToString("MMMM yyyy")</h3> <!-- Display the month and year -->
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>@Html.DisplayNameFor(model => model.Users.FirstOrDefault().Id)</th>
+                                <th>@Html.DisplayNameFor(model => model.Users.FirstOrDefault().UserName)</th>
+                                <th>@Html.DisplayNameFor(model => model.Users.FirstOrDefault().Forename)</th>
+                                <th>@Html.DisplayNameFor(model => model.Users.FirstOrDefault().Surname)</th>
+                                <th>@Html.DisplayNameFor(model => model.Users.FirstOrDefault().CurrentRole)</th>
+                                <th>Status</th>
+                                <th>@Html.DisplayNameFor(model => model.Users.FirstOrDefault().RegisteredAt)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in group)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Forename)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Surname)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.CurrentRole)</td>
+                                    @if (item is Customer customer)
+                                    {
+                                        <td>@Html.DisplayFor(customerItem => customer.CustomerType)</td>
+                                    }
+                                    else if (item is Employee employee)
+                                    {
+                                        <td>@Html.DisplayFor(employeeItem => employee.EmployementStatus)</td>
+                                    }
+                                    <td>@Html.DisplayFor(modelItem => item.RegisteredAt)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            </div>
+        }
+    </div>
+</div>
+
+<br />
+
+<!--Deals with the colour depending on the report type-->
+<div class="d-flex justify-content-center d-inline">
+
+    <p>@Html.ActionLink("Back to Unsorted Reports Page", $"{@Model.ReportType}Report", null, new { @class = "links-colors" })</p>
+
+    <div class="form-group ms-5 mb-3">
+        <div class="col-md-offset-2 col-md-12">
+            @if (Model.ReportType == "Products")
+            {
+                <button id="printReport" type="submit" class="btn btn-success btn-lg btn-block" onclick="return window.print()">
+                    PRINT REPORT
+                </button>
+            }
+            @if (Model.ReportType == "Orders")
+            {
+                <button id="printReport" type="submit" class="btn btn-primary btn-lg btn-block" onclick="return window.print()">
+                    PRINT REPORT
+                </button>
+            }
+            @if (Model.ReportType == "Invoices")
+            {
+                <button id="printReport" type="submit" class="btn btn-warning text-white btn-lg btn-block" onclick="return window.print()">
+                    PRINT REPORT
+                </button>
+            }
+            @if (Model.ReportType == "Users")
+            {
+                <button id="printReport" type="submit" class="btn btn-danger text-white btn-lg btn-block" onclick="return window.print()">
+                    PRINT REPORT
+                </button>
+            }
+        </div>
+    </div>
+</div>
+

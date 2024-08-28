@@ -1,0 +1,165 @@
+﻿@model K_Burns_GU2_Speedo_Models.Models.ViewModels.InvoiceViewModel
+@using K_Burns_GU2_Speedo_Models.Models
+
+@{
+    ViewBag.Title = "Create Invoice";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!--ALERT MESSAGE-->
+@if (TempData["AlertMessage"] != null)
+{
+    <br />
+
+    <div class="alert alert-warning">
+        <strong>@TempData["AlertMessage"]</strong>
+    </div>
+
+    <br />
+}
+
+<!--Handles creating an invoice-->
+<h2 class="text-center">Create Invoice</h2>
+
+<br />
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <h4 class="text-center White-Text">Order Must Already Exist Before Continuing!</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                <h5 class="opacity-50 mb-3">USER DETAILS</h5>
+                <dl class="row White-Text">
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.User.Forename, htmlAttributes: new { @class = "control-label White-Text" })
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.EditorFor(model => model.User.Forename, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                        @Html.ValidationMessageFor(model => model.User.Forename, "", new { @class = "text-danger" })
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.User.Surname, htmlAttributes: new { @class = "control-label White-Text" })
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.EditorFor(model => model.User.Surname, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                        @Html.ValidationMessageFor(model => model.User.Surname, "", new { @class = "text-danger" })
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.User.Email, htmlAttributes: new { @class = "control-label White-Text" })
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.EditorFor(model => model.User.Email, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                        @Html.ValidationMessageFor(model => model.User.Email, "", new { @class = "text-danger" })
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.User.UserName, htmlAttributes: new { @class = "control-label White-Text" })
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.EditorFor(model => model.User.UserName, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                        @Html.ValidationMessageFor(model => model.User.UserName, "", new { @class = "text-danger" })
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.User.PhoneNumber, htmlAttributes: new { @class = "control-label White-Text" })
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.EditorFor(model => model.User.PhoneNumber, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                        @Html.ValidationMessageFor(model => model.User.PhoneNumber, "", new { @class = "text-danger" })
+                    </dd>
+                </dl>
+                <h5 class="opacity-50 mb-3">SHIPPING DETAILS</h5>
+                <dl class="row White-Text">
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.Shipping.ShippingStreet, htmlAttributes: new { @class = "control-label White-Text" })
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.EditorFor(model => model.Shipping.ShippingStreet, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                        @Html.ValidationMessageFor(model => model.Shipping.ShippingStreet, "", new { @class = "text-danger" })
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.Shipping.ShippingCity, htmlAttributes: new { @class = "control-label White-Text" })
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.EditorFor(model => model.Shipping.ShippingCity, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                        @Html.ValidationMessageFor(model => model.Shipping.ShippingCity, "", new { @class = "text-danger" })
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.Shipping.ShippingPostcode, htmlAttributes: new { @class = "control-label White-Text" })
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.EditorFor(model => model.Shipping.ShippingPostcode, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                        @Html.ValidationMessageFor(model => model.Shipping.ShippingPostcode, "", new { @class = "text-danger" })
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-md-6">
+                <h5 class="opacity-50 mb-3">ORDER DETAILS</h5>
+                <dl class="row White-Text">
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.Order.OrderId, htmlAttributes: new { @class = "control-label White-Text" })
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.EditorFor(model => model.Order.OrderId, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                        @Html.ValidationMessageFor(model => model.Order.OrderId, "", new { @class = "text-danger" })
+                    </dd>
+                </dl>
+            </div>
+
+            <div class="col-md-6">
+                <h5 class="opacity-50 mb-3">INVOICE DETAILS</h5>
+                <dl class="row White-Text">
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.Invoice.ReceiptsVoucher, htmlAttributes: new { @class = "control-label White-Text" })
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.EditorFor(model => model.Invoice.ReceiptsVoucher, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                        @Html.ValidationMessageFor(model => model.Invoice.ReceiptsVoucher, "", new { @class = "text-danger" })
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="d-flex justify-content-center d-inline">
+        <div class="form-group ms-5">
+            <div class="col-md-offset-2 col-md-10">
+                <!-- Add the modal trigger button here -->
+                <button type="button" class="btn btn-primary btn-lg btn-block" data-bs-toggle="modal" data-bs-target="#createConfirmModal">
+                    CREATE
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Remove Confirm Modal -->
+    <div class="modal fade" id="createConfirmModal" tabindex="-1" aria-labelledby="createConfirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createConfirmModalLabel">Create Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="background-color: lightgray">
+                    <p>
+                        Are you sure you want to create this invoice?
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <input type="submit" value="Create" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+    </div>
+}

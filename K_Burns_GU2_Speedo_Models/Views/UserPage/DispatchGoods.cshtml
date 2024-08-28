@@ -1,0 +1,167 @@
+﻿@model K_Burns_GU2_Speedo_Models.Models.ViewModels.DispatchViewModel
+@using K_Burns_GU2_Speedo_Models.Models
+
+@{
+    ViewBag.Title = "Dispatch Goods";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!--ALERT MESSAGE-->
+@if (TempData["AlertMessage"] != null)
+{
+    <br />
+
+    <div class="alert alert-warning">
+        <strong>@TempData["AlertMessage"]</strong>
+    </div>
+
+    <br />
+}
+
+<!--Deals with dispatching goods form-->
+<h2 class="text-center">Dispatch Goods</h2>
+
+
+<br />
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="ms-4">
+        <div class="row">
+            <div class="col-md-6">
+                <h5 class="opacity-50 mb-3">ORDER DETAILS</h5>
+                <dl class="row White-Text">
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.Order.OrderId, htmlAttributes: new { @class = "control-label White-Text" })
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.EditorFor(model => model.Order.OrderId, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                        @Html.ValidationMessageFor(model => model.Order.OrderId, "", new { @class = "text-danger" })
+                    </dd>
+                </dl>
+                <h5 class="opacity-50 mb-3">SHIPPING DETAILS</h5>
+                <dl class="row White-Text">
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.Parcel.Method, htmlAttributes: new { @class = "control-label White-Text" })
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.EnumDropDownListFor(model => model.Parcel.Method, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                        @Html.ValidationMessageFor(model => model.Parcel.Method, "", new { @class = "text-danger" })
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.User.UserName, htmlAttributes: new { @class = "control-label White-Text" })
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.EditorFor(model => model.User.UserName, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                        @Html.ValidationMessageFor(model => model.User.UserName, "", new { @class = "text-danger" })
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.Shipping.ShippingStreet, htmlAttributes: new { @class = "control-label White-Text" })
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.EditorFor(model => model.Shipping.ShippingStreet, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                        @Html.ValidationMessageFor(model => model.Shipping.ShippingStreet, "", new { @class = "text-danger" })
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.Shipping.ShippingCity, htmlAttributes: new { @class = "control-label White-Text" })
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.EditorFor(model => model.Shipping.ShippingCity, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                        @Html.ValidationMessageFor(model => model.Shipping.ShippingCity, "", new { @class = "text-danger" })
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.Shipping.ShippingPostcode, htmlAttributes: new { @class = "control-label White-Text" })
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.EditorFor(model => model.Shipping.ShippingPostcode, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                        @Html.ValidationMessageFor(model => model.Shipping.ShippingPostcode, "", new { @class = "text-danger" })
+                    </dd>
+
+                </dl>
+            </div>
+            <div class="col-md-6">
+                <h5 class="opacity-50 mb-3">PARCEL DETAILS</h5>
+                <dl class="row White-Text">
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.Parcel.ParcelType, htmlAttributes: new { @class = "control-label White-Text" })
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.EnumDropDownListFor(model => model.Parcel.ParcelType, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                        @Html.ValidationMessageFor(model => model.Parcel.ParcelType, "", new { @class = "text-danger" })
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.Parcel.Weight, htmlAttributes: new { @class = "control-label White-Text" })
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.EditorFor(model => model.Parcel.Weight, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                        @Html.ValidationMessageFor(model => model.Parcel.Weight, "", new { @class = "text-danger" })
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.Parcel.Width, htmlAttributes: new { @class = "control-label White-Text" })
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.EditorFor(model => model.Parcel.Width, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                        @Html.ValidationMessageFor(model => model.Parcel.Width, "", new { @class = "text-danger" })
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.Parcel.Height, htmlAttributes: new { @class = "control-label White-Text" })
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.EditorFor(model => model.Parcel.Height, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                        @Html.ValidationMessageFor(model => model.Parcel.Height, "", new { @class = "text-danger" })
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.LabelFor(model => model.Parcel.Length, htmlAttributes: new { @class = "control-label White-Text" })
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.EditorFor(model => model.Parcel.Length, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                        @Html.ValidationMessageFor(model => model.Parcel.Length, "", new { @class = "text-danger" })
+                    </dd>
+                </dl>
+            </div>
+
+
+            <div class="d-flex justify-content-center d-inline mt-5">
+                <div class="form-group ms-5">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="button" class="btn btn-primary btn-lg btn-block" data-bs-toggle="modal" data-bs-target="#createConfirmModal">
+                            DISPATCH GOOD
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Remove Confirm Modal -->
+    <div class="modal fade" id="createConfirmModal" tabindex="-1" aria-labelledby="createConfirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createConfirmModalLabel">Create Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="background-color: lightgray">
+                    <p>
+                        Are you sure you want to create this dispatch information?
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <input type="submit" value="Create" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

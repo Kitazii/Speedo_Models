@@ -1,0 +1,66 @@
+﻿@model IEnumerable<K_Burns_GU2_Speedo_Models.Models.Order>
+
+@{
+    ViewBag.Title = "Orders Report";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!--Displays Orders Report page-->
+
+<h2 class="text-center">Orders Report</h2>
+
+<br />
+<hr />
+
+<div class="d-flex justify-content-center mb-3">
+    @Html.ActionLink("SORT BY DAY", "ByDay", "Userpage", new { reportType = "Orders" }, new { @class = "btn btn-primary btn-lg btn-block me-5" })
+    @Html.ActionLink("SORT BY WEEK", "ByWeek", "Userpage", new { reportType = "Orders" }, new { @class = "btn btn-primary btn-lg btn-block me-5" })
+    @Html.ActionLink("SORT BY MONTH", "ByMonth", "Userpage", new { reportType = "Orders" }, new { @class = "btn btn-primary btn-lg btn-block" })
+</div>
+
+<div class="container-fluid px-4">
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            All Orders
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.OrderId)</th>
+                        <th>@Html.DisplayNameFor(model => model.OrderDate)</th>
+                        <th>@Html.DisplayNameFor(model => model.OrderTotal) (Before Shipping)</th>
+                        <th>@Html.DisplayNameFor(model => model.User.UserName)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.OrderId)</td>
+                            <td>@Html.DisplayFor(modelItem => item.OrderDate)</td>
+                            <td>@Html.DisplayFor(modelItem => item.OrderTotal)</td>
+                            <td>@Html.DisplayFor(modelItem => item.User.UserName)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div class="d-flex justify-content-center d-inline">
+
+    <p>@Html.ActionLink("Back to Dashboard", "AdvancedDashboardIndex", null, new { @class = "links-colors" })</p>
+
+    <div class="form-group ms-5">
+        <div class="col-md-offset-2 col-md-12">
+            <button id="printReport" type="submit" class="btn btn-primary btn-lg btn-block" onclick="return window.print()">
+                PRINT REPORT
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,132 @@
+﻿@model IEnumerable<K_Burns_GU2_Speedo_Models.Models.Product>
+@{
+    ViewBag.Title = "Home & Products";
+
+    var category = ViewBag.SelectedCategory;
+}
+
+<style>
+
+    /* Target images within anchor tags inside the 'card-img-top' class */
+    .card-img-top {
+        opacity: 1; /* Full opacity initially */
+        transition: opacity 0.5s ease; /* Transition effect for opacity change, lasting 0.5 seconds */
+    }
+
+        /* Change opacity when hovering over the images */
+        .card-img-top:hover {
+            opacity: 0.6; /* Reduced opacity on hover */
+        }
+</style>
+
+<!--ALERT MESSAGE-->
+@if (TempData["AlertMessage"] != null)
+{
+    <br />
+
+    <div class="alert alert-danger">
+        <strong>@TempData["AlertMessage"]</strong>
+    </div>
+
+    <br />
+}
+
+<!--WARNING MESSAGE-->
+@if (TempData["WarningMessage"] != null)
+{
+    <br />
+
+    <div class="alert alert-warning">
+        <strong>@TempData["WarningMessage"]</strong>
+    </div>
+
+    <br />
+}
+
+<!-- Deals with displaying each product in the system-->
+<div class="row d-flex justify-content-center">
+
+    <div class="col-lg-8">
+
+        <div class="row">
+
+            @if (Model.Count() == 0)
+            {
+                <div class="card-body">
+                    <h5 class="card-title text-center">
+                        No products to display; please select another category!
+                    </h5>
+                </div>
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+
+                    <div class="col-sm-3 col-lg-3 col-md-3 mt-3">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <div class="card h-100">
+                                <a href="@Url.Action("Product", "Shop", new { id = item.ProductId })">
+                                    <img class="card-img-top resized-image" src="@item.ImageUrl" alt="Product Image Displayed" />
+                                </a>
+                                <div class="card-body p-4">
+                                    <div class="text-center">
+                                        <h5 class="fw-bolder">
+                                            <a href="@Url.Action("Product", "Shop", new { id = item.ProductId })">@item.ProductName</a>
+                                        </h5>
+                                        @if (item.OnSale == true)
+                                        {
+                                            <span class="text-muted text-decoration-line-through">£@item.Price</span>
+                                            <span>£@item.DiscountPrice</span>
+                                        }
+                                        else
+                                        {
+                                            <span>£@item.Price</span>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                    @using (Html.BeginForm("Index", "Shop", FormMethod.Post))
+                                    {
+
+                                        @Html.AntiForgeryToken()
+                                        @Html.Hidden("ProductId", item.ProductId)
+
+                                        <div class="text-center form-group">
+                                            @if (item.StockLevel < 1)
+                                            {
+                                                <small class="text-muted">
+                                                    <mark>OUT OF STOCK</mark>
+                                                </small>
+                                            }
+                                            else
+                                            {
+                                                if (Request.IsAuthenticated)
+                                                {
+                                                    if (!User.IsInRole("Customer"))
+                                                    {
+                                                        <a class="btn btn-outline-dark mt-auto disabled" href="#">Add to basket</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <button class="btn btn-outline-dark mt-auto" type="submit" value="AddBasket">Add to basket</button>
+                                                    }
+                                                }
+
+                                                else
+                                                {
+                                                    <button class="btn btn-outline-dark mt-auto" type="submit" value="AddBaskett">Add to basket</button>
+                                                }
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+

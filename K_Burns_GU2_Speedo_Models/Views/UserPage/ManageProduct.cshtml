@@ -1,0 +1,102 @@
+﻿@model IEnumerable<K_Burns_GU2_Speedo_Models.Models.Product>
+
+@{
+    ViewBag.Title = "Manage Products";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!--SUCCESS MESSAGE-->
+@if (TempData["ConfirmationMessage"] != null)
+{
+    <br />
+
+    <div class="alert alert-success">
+        <strong>@TempData["ConfirmationMessage"]</strong>
+    </div>
+
+    <br />
+}
+
+<!--Displays Manage Products page-->
+<div class="container-fluid px-4">
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            All Products
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.ProductName)</th>
+                        <th>@Html.DisplayNameFor(model => model.ProductDescription)</th>
+                        <th>@Html.DisplayNameFor(model => model.Price)</th>
+                        <th>@Html.DisplayNameFor(model => model.Category)</th>
+                        <th>@Html.DisplayNameFor(model => model.DateCreated)</th>
+                        <th>@Html.DisplayNameFor(model => model.StockLevel)</th>
+                        <th>@Html.DisplayNameFor(model => model.OnSale)</th>
+                        <th>@Html.DisplayNameFor(model => model.Discontinued)</th>
+                        <th>Details</th>
+                        @if (User.IsInRole("Admin")
+                        || (User.IsInRole("Sales Manager"))
+                        || (User.IsInRole("Assistant Manager"))
+                        || (User.IsInRole("Stock Control Manager")))
+                        {
+                            <th>Edit</th>
+                        }
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        if (item.IsDeleted == false)
+                        {
+                            {
+                                item.ProductDescription = item.TruncateDescription(3);
+                            }
+
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
+                                <td>@Html.DisplayFor(modelItem => item.ProductDescription)</td>
+
+                                @if (item.OnSale)
+                                {
+                                    <td>
+                                        <span class="text-muted text-decoration-line-through">£@item.Price</span> <br />
+                                        @Html.DisplayFor(modelItem => item.DiscountPrice)
+                                    </td>
+
+                                }
+                                else
+                                {
+                                    <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                                }
+                                <td>@Html.DisplayFor(modelItem => item.Category.CategoryName)</td>
+                                <td>@Html.DisplayFor(modelItem => item.DateCreated)</td>
+                                <td>@Html.DisplayFor(modelItem => item.StockLevel)</td>
+                                <td>@Html.DisplayFor(modelItem => item.OnSale)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Discontinued)</td>
+                                <td>
+                                    @Html.ActionLink("Details", "ProductDetails", new { productId = item.ProductId }, new { @class = "btn btn-outline-secondary green-btn-sm" })
+                                </td>
+                                @if (User.IsInRole("Admin")
+                                    || (User.IsInRole("Sales Manager"))
+                                    || (User.IsInRole("Assistant Manager"))
+                                    || (User.IsInRole("Stock Control Manager")))
+                                {
+                                    <td>
+                                        @Html.ActionLink("Edit", "EditProduct", new { productId = item.ProductId }, new { @class = "btn btn-outline-secondary darkOrange-btn-sm" })
+                                    </td>
+                                }
+                                <td>
+                                    @Html.ActionLink("Delete", "DeleteProduct", new { productId = item.ProductId }, new { @class = "btn btn-outline-secondary darkRed-btn-sm" })
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

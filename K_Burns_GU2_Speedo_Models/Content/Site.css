@@ -1,0 +1,160 @@
+﻿/* Set padding to keep content from hitting the edges */
+.body-content {
+    margin-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.poster-border {
+    border-radius: 10px;
+}
+
+.speedo-main-border {
+    border: solid;
+    border-width: 1px;
+}
+
+/*.list-group-item {*/
+    /* Add your common styling for list items here */
+    /*padding: 10px !important;
+    margin-bottom: 0px !important;
+    border: 2px solid #000000 !important;
+}*/
+
+.list-group-item:hover {
+    background-color: #A52A2A; /* Or use #D2B48C for a lighter shade */
+    color: white;
+}
+
+/* Targeting anchor tags within elements with class 'fw-bolder' */
+.fw-bolder a {
+    color: black; /* Text color is black */
+    text-decoration: none; /* No underline */
+}
+
+.fw-bolder a:hover {
+    color: brown; /* Text color changes to brown on hover */
+}
+
+
+.this-border {
+    border: 2px solid #000000 !important;
+}
+
+.button-height {
+    height: 40px;
+}
+
+.btn-border {
+    border: 1px solid #000000;
+}
+
+.darkRed-btn-sm {
+    border: 2px solid black;
+    background-color: darkred;
+    color: white;
+    font-size: 15px;
+}
+
+.green-btn-sm {
+    border: 2px solid black;
+    background-color: green;
+    color: white;
+    font-size: 15px;
+}
+
+.darkOrange-btn-sm {
+    border: 2px solid black;
+    background-color: darkorange;
+    color: white;
+    font-size: 15px;
+}
+
+.img-left-positioning {
+    float: left;
+    margin-right: 20px;
+    /*width: 80px;*/
+}
+
+.img-right-positioning {
+    float: right;
+    margin-right: 20px;
+}
+
+/*DEALS WITH PRINTING PAGES
+    --Getting rid of the navigational Properties
+*/
+@media print {
+    .navbar, .footer, .links-colors, #printReturn, #printReport, a {
+        display: none !important;
+    }
+
+    .container-fluid, .container {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+@media print and (orientation: landscape) {
+    /* Hide navigational and non-essential layout components */
+    .navbar, .footer, .links-colors, #layoutSidenav_nav, .sb-topnav, .sb-sidenav, .nav, .dropdown, .input-group {
+        display: none !important;
+    }
+
+    /* Ensure that the main content container takes full width */
+    .container-fluid, .container, #layoutSidenav_content {
+        width: 100% !important;
+        max-width: none !important; /* Overriding maximum width constraints if any */
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Full width body without overflow to prevent scrollbars */
+    body {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden; /* Ensures no unwanted scrollbars appear */
+    }
+
+    /* You may want to ensure the content inside #layoutSidenav_content is centered or appropriately styled */
+    #layoutSidenav_content {
+        position: relative;
+        left: 0;
+        transform: translateX(0);
+    }
+}
+
+.link-button {
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+    font-size: 0.875rem;
+}
+
+    .link-button:hover {
+        color: #ffffff; /* Adjust as necessary for hover state */
+    }

@@ -1,0 +1,129 @@
+﻿@{
+    ViewBag.Title = "Return Order";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!-- Display Speedo Models icon-->
+<div class="container-fluid col-lg-9" style="overflow: hidden;">
+    <img src="~/Images/Icons/128x128.png" alt="Left Brand Icon" class="img-left-positioning" />
+    <img src="~/Images/Icons/128x128.png" alt="Right Brand Icon" class="img-right-positioning" />
+    <h2 class="text-center mt-5">Return Packing Slip</h2>
+</div>
+
+
+<br />
+<hr />
+
+<!-- Display Return slip info-->
+<div class="ms-4">
+    <div class="row">
+        <div class="col-md-6">
+            <h5 class="opacity-50 mb-3">CUSTOMER INFORMATION</h5>
+            <dl class="row White-Text">
+                <dt class="col-sm-4">
+                    <label>Name</label>
+                </dt>
+                <dd class="col-sm-8">
+                    <input class="mb-3 w-100" disabled />
+                </dd>
+                <dt class="col-sm-4">
+                    <label>Address</label>
+                </dt>
+                <dd class="col-sm-8">
+                    <input class="mb-3 w-100" disabled />
+                </dd>
+                <dt class="col-sm-4">
+                    <label>Street</label>
+                </dt>
+                <dd class="col-sm-8">
+                    <input class="mb-3 w-100" disabled />
+                </dd>
+                <dt class="col-sm-4">
+                    <label>City</label>
+                </dt>
+                <dd class="col-sm-8">
+                    <input class="mb-3 w-100" disabled />
+                </dd>
+                <dt class="col-sm-4">
+                    <label>Postcode</label>
+                </dt>
+                <dd class="col-sm-8">
+                    <input class="mb-3 w-100" disabled />
+                </dd>
+                <dt class="col-sm-4">
+                    <label>Order Id</label>
+                </dt>
+                <dd class="col-sm-8">
+                    <input class="mb-3 w-100" disabled />
+                </dd>
+                <dt class="col-sm-4">
+                    <label>Store Address</label>
+                </dt>
+                <dd class="col-sm-8">
+                    <input class="mb-3 w-100" disabled /> <br />(Enter SpeedoModels Store Address)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-6">
+            <h5 class="opacity-50 mb-3">Reason For Return</h5>
+            <dl class="row White-Text">
+                <dt class="col-sm-4">
+                    <label>Check The Applied</label>
+                </dt>
+                <dd class="col-sm-8">
+                    <input type="checkbox" class="mb-3" disabled /> Product Damaged
+                    <br />
+                    <input type="checkbox" class="mb-3" disabled /> Quality Unstatisfactory
+                    <br />
+                    <input type="checkbox" class="mb-3" disabled /> Wrong Colour
+                    <br />
+                    <input type="checkbox" class="mb-3" disabled /> Other (Specify Reason)
+                    <input class="mb-3 w-100 d-flex d-inline" disabled />
+                </dd>
+            </dl>
+            <h5 class="opacity-50 mb-3">Return Instructions</h5>
+            <dl class="row White-Text">
+                <dt class="col-sm-4">
+                    <label>Step 1.</label>
+                </dt>
+                <dd class="col-sm-8">
+                    <p>Print a copy of your 'Order Confirmation' receipt as proof of purchase from speedomodels.com which can be found in the "My Orders" section</p>
+                </dd>
+                <dt class="col-sm-4">
+                    <label>Step 2.</label>
+                </dt>
+                <dd class="col-sm-8">
+                    <p>Place your item(s), order confirmation and this form into a sealed box or packackage</p>
+                </dd>
+                <dt class="col-sm-4">
+                    <label>Step 3.</label>
+                </dt>
+                <dd class="col-sm-8">
+                    <p>Ship your package back using royal mail (Speedo Models will not assume transport charges for any items returned)</p>
+                </dd>
+                <dt class="col-sm-4">
+                    <label>Step 4.</label>
+                </dt>
+                <dd class="col-sm-8">
+                    <p>Please note, you must complete the left portion of the Speedo Models Return Label including your name, street, city, post code, order id and reason for return.</p>
+                </dd>
+                <dt class="col-sm-4">
+                    <label>Step 5.</label>
+                </dt>
+                <dd class="col-sm-8">
+                    <p>Please allow 7-10 business dats for your refund to be processed.</p>
+                </dd>
+            </dl>
+
+        </div>
+
+        <!--Print/download as a PDF-->
+        <div class="d-flex justify-content-center d-inline mt-5">
+            <div class="ms-5 mb-3">
+                <div class="col-md-offset-2 col-md-10">
+                    <input id="printReturn" type="button" value="Print Slip" class="btn btn-primary btn-lg btn-block" onclick="window.print();" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

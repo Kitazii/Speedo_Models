@@ -1,0 +1,199 @@
+﻿@using Microsoft.AspNet.Identity
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Dashboard - SB Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="~/Content/styles2.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="sb-nav-fixed">
+    <style>
+        .i-color {
+            color: black;
+        }
+    </style>
+    <nav class="sb-topnav navbar navbar-expand navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+            <!-- Navbar Brand-->
+            <a class="navbar-brand ps-3 text-black" href="/Home/Index">Speedo Models</a>
+            <!-- Sidebar Toggle-->
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars i-color"></i></button>
+
+            <!--Back to shop-->
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item">@Html.ActionLink("Back To Shop", "Index", "Home", new { area = "" }, new { @class = "nav-link text-black opacity-50" })</li>
+                </ul>
+            </div>
+            @Html.Partial("_LoginPartial")
+         </div>
+    </nav>
+    <!--Deals with the side panel, depending on the users role-->
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            @if (Request.IsAuthenticated)
+            {
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            @if (User.IsInRole("Admin")
+                                || User.IsInRole("Sales Manager")
+                                || User.IsInRole("Assistant Manager")
+                                || User.IsInRole("Sales Assistant")
+                                || User.IsInRole("Stock Control Manager")
+                                || User.IsInRole("Invoice Clerk")
+                                || User.IsInRole("Warehouse Assistant"))
+                            {
+                                <div class="sb-sidenav-menu-heading">Core</div>
+                                if (User.IsInRole("Admin") || User.IsInRole("Sales Manager"))
+                                {
+                                    <a class="nav-link" href="/UserPage/AdvancedDashboardIndex">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                        Dashboard
+                                    </a>
+                                }
+                                if (User.IsInRole("Assistant Manager")
+                                    || User.IsInRole("Sales Assistant")
+                                    || User.IsInRole("Stock Control Manager")
+                                    || User.IsInRole("Invoice Clerk")
+                                    || User.IsInRole("Warehouse Assistant"))
+                                {
+                                    <a class="nav-link" href="/UserPage/DashboardIndex">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                        Dashboard
+                                    </a>
+                                }
+
+                                <div class="sb-sidenav-menu-heading">Accounts</div>
+                                if (User.IsInRole("Admin"))
+                                {
+                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                                        Users
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                        <nav class="sb-sidenav-menu-nested nav">
+                                            <a class="nav-link" href="/Admin/CreateEmployee">Register New Employee</a>
+                                            <a class="nav-link" href="/Admin/ManageEmployees">Manage Employees</a>
+                                            <a class="nav-link" href="/UserPage/ManageCustomers">Manage Customers</a>
+                                        </nav>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <a class="nav-link" href="/UserPage/ManageCustomers">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                                        Manage Customers
+                                    </a>
+                                }
+                                <div class="sb-sidenav-menu-heading">Products</div>
+                                <a class="nav-link" href="/UserPage/RecordProduct">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                    Record New Products
+                                </a>
+                                <a class="nav-link" href="/UserPage/ManageProduct">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                    Manage Products
+                                </a>
+                                <div class="sb-sidenav-menu-heading">Orders</div>
+                                if (User.IsInRole("Invoice Clerk") || User.IsInRole("Admin"))
+                                {
+                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseInvoice" aria-expanded="false" aria-controls="collapseLayouts">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-search"></i></div>
+                                        Invoice
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="collapseInvoice" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                        <nav class="sb-sidenav-menu-nested nav">
+                                            <a class="nav-link" href="/UserPage/CreateInvoice">Create Invoice</a>
+                                            <a class="nav-link" href="/UserPage/ManageInvoices">Manage Invoices</a>
+                                        </nav>
+                                    </div>
+                                }
+                                if (User.IsInRole("Warehouse Assistant") || User.IsInRole("Admin"))
+                                {
+                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseWarehouse" aria-expanded="false" aria-controls="collapseLayouts">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                        Dispatches
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="collapseWarehouse" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                        <nav class="sb-sidenav-menu-nested nav">
+                                            <a class="nav-link" href="/UserPage/DispatchGoods">Dispatch Goods</a>
+                                            <a class="nav-link" href="/UserPage/ManageDispatches">Manage Dispatches</a>
+                                        </nav>
+                                    </div>
+                                }
+
+                                if (User.IsInRole("Sales Assistant")
+                                    || User.IsInRole("Sales Manager")
+                                    || User.IsInRole("Admin"))
+                                {
+                                    <a class="nav-link" href="/UserPage/ProductCount">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                        Create Order
+                                    </a>
+                                }
+                                <a class="nav-link" href="/UserPage/PlacedOrders">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                    Manage Orders
+                                </a>
+                            }
+
+                            @if (User.IsInRole("Customer"))
+                            {
+                                <a class="nav-link" href="/UserPage/MyPlacedOrders">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                    My Orders
+                                </a>
+                                <a class="nav-link" href="/Customer/MyInvoices">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-search"></i></div>
+                                    My Invoices
+                                </a>
+                                <a class="nav-link" href="/Customer/ReturnOrder">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                    Print Return
+                                </a>
+                            }
+
+                        </div>
+                    </div>
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Logged in as:</div>
+                        @User.Identity.GetUserName()
+                    </div>
+                </nav>
+            }
+            </div>
+        <!--Render the body and footer-->
+        <div id="layoutSidenav_content">
+            @RenderBody()
+            <footer class="py-4 bg-dark mt-auto">
+                <div class="container-fluid px-4 d-flex justify-content-center align-items-center">
+                    <p class="m-3 text-center text-white d-inline">Copyright &copy; Speedo Models @DateTime.Now.Year</p>
+                    <img src="~/Images/Icons/64x64.png" alt="Favicon" />
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!--Calling bootstrap scripts for the page-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="~/Scripts/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="~/assets/demo/chart-area-demo.js"></script>
+    <script src="~/assets/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="~/Scripts/datatables-simple-demo.js"></script>
+</body>
+</html>

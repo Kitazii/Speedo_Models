@@ -1,0 +1,133 @@
+﻿@model K_Burns_GU2_Speedo_Models.Models.User
+@using K_Burns_GU2_Speedo_Models.Models
+
+@{
+    ViewBag.Title = "User Details";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2 class="text-center">@Model.Forename's Account Details</h2>
+
+<br />
+<hr />
+
+<!-- Displays Users details Depending if the user is an EMPLOYEE or a CUSTOMER-->
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <dl class="row White-Text">
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.UserName)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.UserName)
+                </dd>
+
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Forename)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Forename)
+                </dd>
+
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Surname)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Surname)
+                </dd>
+
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.PhoneNumber)
+                </dd>
+
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Street)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Street)
+                </dd>
+
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.City)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.City)
+                </dd>
+
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Postcode)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Postcode)
+                </dd>
+
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.RegisteredAt)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.RegisteredAt)
+                </dd>
+
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.CurrentRole)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.CurrentRole)
+                </dd>
+
+
+                @if (Model is Employee employee)
+                {
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(modelEmployee => employee.SalaryOutput)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(modelEmployee => employee.SalaryOutput)
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(modelEmployee => employee.EmployementStatus)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(modelEmployee => employee.EmployementStatus)
+                    </dd>
+                }
+                else if (Model is Customer customer)
+                {
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(modelCustomer => customer.CustomerType)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(modelCustomer => customer.CustomerType)
+                    </dd>
+                }
+
+            </dl>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div class="d-flex justify-content-center d-inline">
+    @if (Model is Employee)
+    {
+        <p>@Html.ActionLink("Back to Manage Employees", "ManageEmployees", null, new { @class = "links-colors" })</p>
+    }
+    else
+    {
+        <p>@Html.ActionLink("Back to Manage Customers", "ManageCustomers", null, new { @class = "links-colors" })</p>
+    }
+</div>

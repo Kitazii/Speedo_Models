@@ -1,0 +1,74 @@
+﻿@model IEnumerable<K_Burns_GU2_Speedo_Models.Models.Order>
+@using K_Burns_GU2_Speedo_Models.Models
+
+@{
+    ViewBag.Title = "Placed Orders";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!--Displays My Manage Orders page-->
+<div class="container-fluid px-4">
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            View My Orders
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.OrderId)</th>
+                        <th>@Html.DisplayNameFor(model => model.OrderDate)</th>
+                        <th>@Html.DisplayNameFor(model => model.Status)</th>
+                        <th>@Html.DisplayNameFor(model => model.OrderTotal)</th>
+                        <th>@Html.DisplayNameFor(model => model.ShippingInfo.ShippingCost)</th>
+                        <th>@Html.DisplayNameFor(model => model.TotalAmount)</th>
+                        <th>Details</th>
+                        <th>Amend</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.OrderId)</td>
+                        <td>@Html.DisplayFor(modelItem => item.OrderDate)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                        <td>@Html.DisplayFor(modelItem => item.OrderTotal)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ShippingInfo.ShippingCost)</td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalAmount) <br />
+                            @Html.ValidationMessageFor(modelItem => item.TotalAmount, "", new { @class = "text-warning" })
+                        </td>
+                        <td>
+                            @Html.ActionLink("Details", "DetailsOrder", new { orderId = item.OrderId }, new { @class = "btn btn-outline-secondary green-btn-sm" })
+                        </td>
+                        
+                        <!--Change the Amend order, set it to disabled-->
+                        @if (item.Status.Equals(Status.Delivered))
+                        {
+                            <td>
+                                @Html.ActionLink("Amend", "AmendOrder", new { orderId = item.OrderId }, new { @class = "btn btn-outline-secondary darkOrange-btn-sm disabled" })
+                            </td>
+                            <td>
+                                @Html.ActionLink("Delete", "RemoveOrder", new { orderId = item.OrderId }, new { @class = "btn btn-outline-secondary darkRed-btn-sm" })
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                @Html.ActionLink("Amend", "AmendOrder", new { orderId = item.OrderId }, new { @class = "btn btn-outline-secondary darkOrange-btn-sm" })
+                            </td>
+                            <td>
+                                @Html.ActionLink("Cancel", "RemoveOrder", new { orderId = item.OrderId }, new { @class = "btn btn-outline-secondary darkRed-btn-sm" })
+                            </td>
+                        }
+
+                    </tr>
+            }
+            </tbody>
+            </table>
+        </div>
+    </div>
+</div>

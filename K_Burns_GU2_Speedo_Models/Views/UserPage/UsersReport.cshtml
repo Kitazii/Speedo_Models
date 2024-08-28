@@ -1,0 +1,79 @@
+﻿@model IEnumerable<K_Burns_GU2_Speedo_Models.Models.User>
+@using K_Burns_GU2_Speedo_Models.Models
+
+@{
+    ViewBag.Title = "Users Report";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!--Displays users report-->
+<h2 class="text-center">Users Report</h2>
+
+<br />
+<hr />
+
+<div class="d-flex justify-content-center mb-3">
+    @Html.ActionLink("SORT BY DAY", "ByDay", "Userpage", new { reportType = "Users" }, new { @class = "btn btn-danger btn-lg btn-block me-5 text-white" })
+    @Html.ActionLink("SORT BY WEEK", "ByWeek", "Userpage", new { reportType = "Users" }, new { @class = "btn btn-danger btn-lg btn-block me-5 text-white" })
+    @Html.ActionLink("SORT BY MONTH", "ByMonth", "Userpage", new { reportType = "Users" }, new { @class = "btn btn-danger btn-lg btn-block text-white" })
+</div>
+
+<div class="container-fluid px-4">
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            All Users
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Id)</th>
+                        <th>@Html.DisplayNameFor(model => model.UserName)</th>
+                        <th>@Html.DisplayNameFor(model => model.Forename)</th>
+                        <th>@Html.DisplayNameFor(model => model.Surname)</th>
+                        <th>@Html.DisplayNameFor(model => model.CurrentRole)</th>
+                        <th>Status</th>
+                        <th>@Html.DisplayNameFor(model => model.RegisteredAt)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                            <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Forename)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Surname)</td>
+                            <td>@Html.DisplayFor(modelItem => item.CurrentRole)</td>
+                            @if (item is Customer customer)
+                            {
+                                <td>@Html.DisplayFor(customerItem => customer.CustomerType)</td>
+                            }
+                            else if (item is Employee employee)
+                            {
+                                <td>@Html.DisplayFor(employeeItem => employee.EmployementStatus)</td>
+                            }
+                            <td>@Html.DisplayFor(modelItem => item.RegisteredAt)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div class="d-flex justify-content-center d-inline">
+
+    <p>@Html.ActionLink("Back to Dashboard", "AdvancedDashboardIndex", null, new { @class = "links-colors" })</p>
+
+    <div class="form-group ms-5 mb-3">
+        <div class="col-md-offset-2 col-md-12">
+            <button id="printReport" type="submit" class="btn btn-danger btn-lg btn-block" onclick="return window.print()">
+                PRINT REPORT
+            </button>
+        </div>
+    </div>
+</div>

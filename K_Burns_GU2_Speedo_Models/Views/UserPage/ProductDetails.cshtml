@@ -1,0 +1,93 @@
+﻿@model K_Burns_GU2_Speedo_Models.Models.Product
+
+@{
+    ViewBag.Title = "Product Details";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!--Displays Product Details page-->
+
+<h2 class="text-center">@Model.ProductName Details</h2>
+
+<br />
+<hr />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <dl class="row White-Text">
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.ProductName)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.ProductName)
+                </dd>
+
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.ProductDescription)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.ProductDescription)
+                </dd>
+
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+
+                @if (Model.OnSale)
+                {
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.DiscountPrice)
+                    </dd>
+                }
+                else
+                {
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Price)
+                    </dd>
+                }
+
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.ProductSize)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.ProductSize)
+                </dd>
+
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.StockLevel)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.StockLevel)
+                </dd>
+
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.OnSale)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.OnSale)
+                </dd>
+
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Discontinued)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Discontinued)
+                </dd>
+
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Category.CategoryName)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Category.CategoryName)
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div class="d-flex justify-content-center d-inline">
+    <p>@Html.ActionLink("Back to Manage Products", "ManageProduct", null, new { @class = "links-colors" })</p>
+</div>

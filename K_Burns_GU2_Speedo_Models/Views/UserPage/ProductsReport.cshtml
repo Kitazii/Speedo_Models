@@ -1,0 +1,79 @@
+﻿@model IEnumerable<K_Burns_GU2_Speedo_Models.Models.Product>
+
+@{
+    ViewBag.Title = "Products Report";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!--Displays Product Report page-->
+
+<h2 class="text-center">Products Report</h2>
+
+<br />
+<hr />
+
+<div class="d-flex justify-content-center mb-3">
+    @Html.ActionLink("SORT BY DAY", "ByDay", "Userpage", new { reportType = "Products" }, new { @class = "btn btn-success btn-lg btn-block me-5" })
+    @Html.ActionLink("SORT BY WEEK", "ByWeek", "Userpage", new { reportType = "Products" }, new { @class = "btn btn-success btn-lg btn-block me-5" })
+    @Html.ActionLink("SORT BY MONTH", "ByMonth", "Userpage", new { reportType = "Products" }, new { @class = "btn btn-success btn-lg btn-block" })
+</div>
+
+<div class="container-fluid px-4">
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            All Products
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.ProductId)</th>
+                        <th>@Html.DisplayNameFor(model => model.ProductName)</th>
+                        <th>@Html.DisplayNameFor(model => model.ProductDescription)</th>
+                        <th>@Html.DisplayNameFor(model => model.ProductSize)</th>
+                        <th>@Html.DisplayNameFor(model => model.Price)</th>
+                        <th>@Html.DisplayNameFor(model => model.DiscountPrice)</th>
+                        <th>@Html.DisplayNameFor(model => model.StockLevel)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.ProductId)</td>
+                            <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.ProductDescription)</td>
+                            <td>@Html.DisplayFor(modelItem => item.ProductSize)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                            @if (item.OnSale)
+                            {
+                                <td>@Html.DisplayFor(modelItem => item.DiscountPrice)</td>
+                            }
+                            else
+                            {
+                                <td>N/A</td>
+                            }
+                            <td>@Html.DisplayFor(modelItem => item.StockLevel)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div class="d-flex justify-content-center d-inline">
+
+    <p>@Html.ActionLink("Back to Dashboard", "AdvancedDashboardIndex", null, new { @class = "links-colors" })</p>
+
+    <div class="form-group ms-5 mb-3">
+        <div class="col-md-offset-2 col-md-12">
+            <button id="printReport" type="submit" class="btn btn-success btn-lg btn-block" onclick="return window.print()">
+                PRINT REPORT
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<K_Burns_GU2_Speedo_Models.Models.Order>
+
+@{
+    ViewBag.Title = "Manage Dispatches";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!--ALERT MESSAGE-->
+@if (TempData["AlertMessage"] != null)
+{
+    <br />
+
+    <div class="alert alert-warning">
+        <strong>@TempData["AlertMessage"]</strong>
+    </div>
+
+    <br />
+}
+
+<!--SUCCESS MESSAGE-->
+@if (TempData["ConfirmationMessage"] != null)
+{
+    <br />
+
+    <div class="alert alert-success">
+        <strong>@TempData["ConfirmationMessage"]</strong>
+    </div>
+
+    <br />
+}
+
+<!--Displays Manage Dispatches page-->
+<div class="container-fluid px-4">
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            All Dispatches
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.OrderId)</th>
+                        <th>@Html.DisplayNameFor(model => model.Parcel.Method)</th>
+                        <th>@Html.DisplayNameFor(model => model.Parcel.ParcelType)</th>
+                        <th>@Html.DisplayNameFor(model => model.Status)</th>
+                        <th>Details</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.OrderId)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Parcel.Method)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Parcel.ParcelType)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                            <td>
+                                @Html.ActionLink("Details", "DispatchDetails", new { orderId = item.OrderId }, new { @class = "btn btn-outline-secondary green-btn-sm" })
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "EditDispatch", new { orderId = item.OrderId }, new { @class = "btn btn-outline-secondary darkOrange-btn-sm" })
+                            </td>
+                            <td>
+                                @Html.ActionLink("Delete", "DeleteDispatch", new { orderId = item.OrderId }, new { @class = "btn btn-outline-secondary darkRed-btn-sm" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

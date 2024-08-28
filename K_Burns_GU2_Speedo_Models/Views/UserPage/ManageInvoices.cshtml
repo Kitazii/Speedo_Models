@@ -1,0 +1,79 @@
+﻿@model IEnumerable<K_Burns_GU2_Speedo_Models.Models.Invoice>
+@using K_Burns_GU2_Speedo_Models.Models
+
+@{
+    ViewBag.Title = "Manage Invoices";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!--ALERT MESSAGE-->
+@if (TempData["AlertMessage"] != null)
+{
+    <br />
+
+    <div class="alert alert-warning">
+        <strong>@TempData["AlertMessage"]</strong>
+    </div>
+
+    <br />
+}
+
+<!--SUCCESS MESSAGE-->
+@if (TempData["ConfirmationMessage"] != null)
+{
+    <br />
+
+    <div class="alert alert-success">
+        <strong>@TempData["ConfirmationMessage"]</strong>
+    </div>
+
+    <br />
+}
+
+<!--Displays Manage Invoices page-->
+<div class="container-fluid px-4">
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            All Invoices
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Order.User.UserName)</th>
+                        <th>@Html.DisplayNameFor(model => model.Order.User.Postcode)</th>
+                        <th>Customer Type</th>
+                        <th>Total Products</th>
+                        <th>@Html.DisplayNameFor(model => model.Order.OrderId)</th>
+                        <th>@Html.DisplayNameFor(model => model.InvoiceId)</th>
+                        <th>Details</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        if (item.Order.User is Customer customer)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Order.User.UserName)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Order.ShippingInfo.ShippingPostcode)</td>
+                                <td>@Html.DisplayFor(modelItem => customer.CustomerType)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Order.OrderLines.Count)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Order.OrderId)</td>
+                                <td>@Html.DisplayFor(modelItem => item.InvoiceId)</td>
+                                <td>
+                                    @Html.ActionLink("Details", "InvoiceDetails", new { invoiceId = item.InvoiceId }, new { @class = "btn btn-outline-secondary green-btn-sm" })
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Delete", "DeleteInvoice", new { invoiceId = item.InvoiceId }, new { @class = "btn btn-outline-secondary darkRed-btn-sm" })
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

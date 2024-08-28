@@ -1,0 +1,60 @@
+﻿@model K_Burns_GU2_Speedo_Models.Models.ViewModels.CreateOrderViewModel
+
+@{
+    ViewBag.Title = "Product Count";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!--ALERT MESSAGE-->
+@if (TempData["AlertMessage"] != null)
+{
+    <br />
+
+    <div class="alert alert-warning">
+        <strong>@TempData["AlertMessage"]</strong>
+    </div>
+
+    <br />
+}
+
+<!--Displays Product Count page-->
+
+<h2 class="text-center">Product Count</h2>
+
+<br />
+<hr />
+
+@using (Html.BeginForm("CreateOrder", "UserPage", FormMethod.Get))
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <h4 class="text-center White-Text">Please Enter The Number Of Products The Order Will Have</h4>
+        <hr />
+        <div class="row justify-content-center form-group">
+            <div class="col-md-6 d-flex align-items-center">
+                @Html.LabelFor(model => model.ProductCount, htmlAttributes: new { @class = "control-label White-Text fw-bold me-3" })
+                @Html.EditorFor(model => model.ProductCount, new { htmlAttributes = new { @class = "form-control mb-3", @style = "flex: 1;" } })
+            </div>
+            <div class="d-flex justify-content-center mb-5">
+                @Html.ValidationMessageFor(model => model.ProductCount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+
+    <br />
+
+    <div class="d-flex justify-content-center d-inline mt-5">
+        <p>@Html.ActionLink("Back to Manage Orders", "PlacedOrders", null, new { @class = "links-colors" })</p>
+
+        <div class="form-group ms-5">
+            <div class="col-md-offset-2 col-md-10">
+                <!-- Add the modal trigger button here -->
+                <button type="submit" class="btn btn-primary btn-lg btn-block">
+                    GENERATE ORDER FORM
+                </button>
+            </div>
+        </div>
+    </div>
+}
+

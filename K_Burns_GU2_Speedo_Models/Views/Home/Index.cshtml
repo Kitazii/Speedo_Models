@@ -1,0 +1,104 @@
+﻿@{
+    ViewBag.Title = "Home & Products";
+}
+
+<!-- Specific style for this page-->
+<style>
+    input,
+    select,
+    textarea {
+        max-width: 1000px;
+    }
+</style>
+
+<header class="container body-content pb-5">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" hidden></li>
+            <li data-target="#carouselExampleIndicators" data-bs-slide-to="1" hidden></li>
+            <li data-target="#carouselExampleIndicators" data-bs-slide-to="2" hidden></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+
+            <!-- Slide One - Set the background image for this slide in the line below-->
+
+            <div class="carousel-item active">
+                <img class="d-block img-fluid poster-border" src="~/Images/Limited_Edition_Poster_1.png" />
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>Bentley Delux Editon</h3>
+                    <p></p>
+                </div>
+            </div>
+
+            <!-- Slide Two - Set the background image for this slide in the line below-->
+
+            <div class="carousel-item">
+                <img class="d-block img-fluid poster-border" src="~/Images/Limited_Edition_Poster_2.png" />
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>Porche Collection</h3>
+                    <p></p>
+                </div>
+            </div>
+
+            <!-- Slide Three - Set the background image for this slide in the line below-->
+
+            <div class="carousel-item">
+                <img class="d-block img-fluid poster-border" src="~/Images/Limited_Edition_Poster_33.png" />
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>Scalextrix Spider VS Goblin</h3>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </a>
+    </div>
+</header>
+<!-- Categories section-->
+<section class="bg-light border-bottom container">
+    <h1 class="p-4 text-center fw-bolder">Shop By Category</h1>
+    <div class="row mb-3">
+        <div class="col-lg-2 col-sm-6 portfolio-item img-fluid">
+            <img class="d-block img-fluid" src="~/Images/Categories/Cars.png" />
+            <a class="btn btn-lg btn-secondary w-100" href="@Url.Action("Cars", "Shop")">Cars</a>
+        </div>
+        <div class="col-lg-2 col-sm-6 portfolio-item">
+            <img class="d-block img-fluid" src="~/Images/Categories/Child_Set.png" />
+            <a class="btn btn-lg btn-secondary w-100" href="@Url.Action("ChildSets", "Shop")">Child Sets</a>
+        </div>
+        <div class="col-lg-2 col-sm-6 portfolio-item">
+            <img class="d-block img-fluid" src="~/Images/Categories/Controller.png" />
+            <a class="btn btn-lg btn-secondary w-100" href="@Url.Action("Tools", "Shop")">Tools</a>
+        </div>
+
+        <div class="col-lg-2 col-sm-6 portfolio-item">
+            <img class="d-block img-fluid" src="~/Images/Categories/Limited_Set.png" />
+            <a class="btn btn-lg btn-secondary w-100" href="@Url.Action("LimitedSets", "Shop")">Limted Sets</a>
+        </div>
+        <div class="col-lg-2 col-sm-6 portfolio-item">
+            <img class="d-block img-fluid" src="~/Images/Categories/Standard_Set.png" />
+            <a class="btn btn-lg btn-secondary w-100" href="@Url.Action("StandardSets", "Shop")">Standard Sets</a>
+        </div>
+        <div class="col-lg-2 col-sm-6 portfolio-item">
+            <img class="d-block img-fluid" src="~/Images/Categories/Tracks.png" />
+            <a class="btn btn-lg btn-secondary w-100" href="@Url.Action("Tracks", "Shop")">Tracks</a>
+        </div>
+    </div>
+</section>
+
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<!-- * *                               SB Forms JS                               * *-->
+<!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+

@@ -1,0 +1,91 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <title>Carpe Librum</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
+
+    <style>
+        body {
+            font: 20px Montserrat, sans-serif;
+            line-height: 1.8;
+            color: #2f2f2f; /* Black Gray */
+            padding-top: 0px;
+            padding-bottom: 0px;
+        }
+
+        .bg-1 {
+            background-color: #000000; /* Black */
+            color: #fff;
+        }
+
+        .container-fluid {
+            padding-top: 70px;
+            padding-bottom: 70px;
+        }
+
+        .margin {
+            margin-bottom: 45px;
+        }
+
+        /* unvisted link */
+        a:link {
+            color: white;
+            text-decoration: none;
+            font-size: 200%;
+        }
+
+        /* visted link */
+        a:visited {
+            color: white;
+            text-decoration: none;
+            font-size: 200%;
+        }
+
+        /* mouse over link */
+        a:hover {
+            color: lightblue;
+            text-decoration: none;
+            font-size: 200%;
+        }
+
+        /*Selected link*/
+        a:active {
+            color: white;
+            text-decoration: none;
+            font-size: 200%;
+        }
+
+        /* Overwritting the 'img-fluid' class to give us the desired view */
+        .img-fluid {
+            display: block; /* Treats the text as a block element instead of default inline */
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid bg-1 text-center">
+
+        @*this is a link that when clicked by user the home page is displayed*@
+        @Html.ActionLink("How To Place An Order", "Index", "Home", new { @class = "margin" })
+
+        @*this video will play in a loop until the user will clikc the link from above*@
+        <video autoplay loop muted class="img-fluid" src="~/Videos/Place_Order_Tutorial.mp4"></video>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bunsles/bootstrap")
+</body>
+</html>

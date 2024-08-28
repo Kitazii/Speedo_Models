@@ -1,0 +1,120 @@
+﻿@model IEnumerable<K_Burns_GU2_Speedo_Models.Models.ViewModels.AdvancedDashboardViewModels>
+@using K_Burns_GU2_Speedo_Models.Models.ViewModels
+
+@{
+    ViewBag.Title = "Advanced Dashboard";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!--Displays advanced dashboard-->
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">@*@ViewBag.RoleName*@Employee Advanced Dashboard</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+        <!--Deals with forms for each report-->
+        <div class="row">
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-primary text-white mb-4">
+                    <div class="card-body text-center">Total Orders <br /> <p class="m-0">@Model.FirstOrDefault().OrdersCount</p></div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        @using (Html.BeginForm("OrdersReport", "UserPage", FormMethod.Get))
+                        {
+                            <input type="submit" class="link-button text-white stretched-link" value="View Details">
+                        }
+                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-warning text-white mb-4">
+                    <div class="card-body text-center">Total Invoices <br /> <p class="m-0">@Model.FirstOrDefault().InvoicesCount</p></div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        @using (Html.BeginForm("InvoicesReport", "UserPage", FormMethod.Get))
+                        {
+                            <input type="submit" class="link-button text-white stretched-link" value="View Details">
+                        }
+                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-success text-white mb-4">
+                    <div class="card-body text-center">Total Products <br /> <p class="m-0">@Model.FirstOrDefault().ProductsCount</p></div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        @using (Html.BeginForm("ProductsReport", "UserPage", FormMethod.Get))
+                        {
+                            <input type="submit" class="link-button text-white stretched-link" value="View Details">
+                        }
+                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-danger text-white mb-4">
+                    <div class="card-body text-center">Total Users <br /> <p class="m-0">@Model.FirstOrDefault().UsersCount</p></div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        @using (Html.BeginForm("UsersReport", "UserPage", FormMethod.Get))
+                        {
+                            <input type="submit" class="link-button text-white stretched-link" value="View Details">
+                        }
+                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Deals with displaying all the users in the system Organised by either EMPLOYEE or CUSTOMER-->
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                All Users
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.User.Forename)</th>
+                            <th>@Html.DisplayNameFor(model => model.User.UserName)</th>
+                            <th>@Html.DisplayNameFor(model => model.User.CurrentRole)</th>
+                            <th>Status</th>
+                            <th>@Html.DisplayNameFor(model => model.User.RegisteredAt)</th>
+                            <th>@Html.DisplayNameFor(model => model.User.IsActive)</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.User.Forename)</th>
+                            <th>@Html.DisplayNameFor(model => model.User.UserName)</th>
+                            <th>@Html.DisplayNameFor(model => model.User.CurrentRole)</th>
+                            <th>Status</th>
+                            <th>@Html.DisplayNameFor(model => model.User.RegisteredAt)</th>
+                            <th>@Html.DisplayNameFor(model => model.User.IsActive)</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.User.Forename)</td>
+                                <td>@Html.DisplayFor(modelItem => item.User.UserName)</td>
+                                <td>@Html.DisplayFor(modelItem => item.User.CurrentRole)</td>
+                                @if (item.User is K_Burns_GU2_Speedo_Models.Models.Customer customer)
+                                {
+                                    <td>@Html.DisplayFor(_ => customer.CustomerType)</td>
+                                }
+                                else if (item.User is K_Burns_GU2_Speedo_Models.Models.Employee employee)
+                                {
+                                    <td>@Html.DisplayFor(_ => employee.EmployementStatus)</td>
+                                }
+                                <td>@Html.DisplayFor(modelItem => item.User.RegisteredAt)</td>
+                                <td>@Html.DisplayFor(modelItem => item.User.IsActive)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>

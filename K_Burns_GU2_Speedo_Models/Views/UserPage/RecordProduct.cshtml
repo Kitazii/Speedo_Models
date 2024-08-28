@@ -1,0 +1,118 @@
+﻿@model K_Burns_GU2_Speedo_Models.Models.ViewModels.ProductViewModel
+
+@{
+    ViewBag.Title = "Record New Product";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!--Deals with record product form-->
+
+<h2 class="text-center">Record A New Product</h2>
+<h4 class="text-center White-Text">Are you sure you want to create a new product?</h4>
+
+<br />
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row ms-3">
+        <div class="col-md-6 form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label White-Text" })
+                </div>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                    @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    @Html.LabelFor(model => model.ProductDescription, htmlAttributes: new { @class = "control-label White-Text" })
+                </div>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.ProductDescription, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                    @Html.ValidationMessageFor(model => model.ProductDescription, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label White-Text" })
+                </div>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    @Html.LabelFor(model => model.StockLevel, htmlAttributes: new { @class = "control-label White-Text" })
+                </div>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.StockLevel, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                    @Html.ValidationMessageFor(model => model.StockLevel, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    @Html.LabelFor(model => model.SaleDifference, htmlAttributes: new { @class = "control-label White-Text" })
+                </div>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.SaleDifference, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                    @Html.ValidationMessageFor(model => model.SaleDifference, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    @Html.LabelFor(model => model.ProductSize, htmlAttributes: new { @class = "control-label White-Text" })
+                </div>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.ProductSize, new { htmlAttributes = new { @class = "form-control mb-3" } })
+                    @Html.ValidationMessageFor(model => model.ProductSize, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row mt-3">
+                <div class="col-sm-4">
+                    @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label White-Text" })
+                </div>
+                <div class="col-sm-6">
+                    @Html.DropDownListFor(model => model.Category, Model.Categories, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <br />
+            <br />
+
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center d-inline">
+        <div class="form-group ms-5">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="CREATE" class="btn btn-primary btn-lg btn-block" onclick="return ConfirmationDialog()" />
+            </div>
+        </div>
+    </div>
+
+    <!--Deals with displaying a confirmation pop up window-->
+    <script type="text/javascript">
+        function ConfirmationDialog() {
+            if (confirm("Are you sure to create this product?"))
+                return true;
+            else
+                return false;
+        }
+    </script>
+
+}

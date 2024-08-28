@@ -1,0 +1,98 @@
+﻿@model IEnumerable<K_Burns_GU2_Speedo_Models.Models.User>
+@using K_Burns_GU2_Speedo_Models.Models
+@{
+    ViewBag.Title = "Manage Employees";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!--ALERT MESSAGE-->
+@if (TempData["AlertMessage"] != null)
+{
+    <br />
+
+    <div class="alert alert-danger">
+        <strong>@TempData["AlertMessage"]</strong>
+    </div>
+
+    <br />
+}
+
+<!--SUCCESS MESSAGE-->
+@if (TempData["ConfirmationMessage"] != null)
+{
+    <br />
+
+    <div class="alert alert-success">
+        <strong>@TempData["ConfirmationMessage"]</strong>
+    </div>
+
+    <br />
+}
+
+<!-- Displays Manage Employees details-->
+<div class="container-fluid px-4">
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            All Users
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Forename)</th>
+                        <th>@Html.DisplayNameFor(model => model.UserName)</th>
+                        <th>@Html.DisplayNameFor(model => model.CurrentRole)</th>
+                        <th>Status</th>
+                        <th>Salary</th>
+                        <th>@Html.DisplayNameFor(model => model.RegisteredAt)</th>
+                        <th>@Html.DisplayNameFor(model => model.IsActive)</th>
+                        <th>Details</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Forename)</th>
+                        <th>@Html.DisplayNameFor(model => model.UserName)</th>
+                        <th>@Html.DisplayNameFor(model => model.CurrentRole)</th>
+                        <th>Status</th>
+                        <th>Salary</th>
+                        <th>@Html.DisplayNameFor(model => model.RegisteredAt)</th>
+                        <th>@Html.DisplayNameFor(model => model.IsActive)</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        if (item is Employee employee)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => employee.Forename)</td>
+                                <td>@Html.DisplayFor(modelItem => employee.UserName)</td>
+                                <td>@Html.DisplayFor(modelItem => employee.CurrentRole)</td>
+                                <td>@Html.DisplayFor(modelItem => employee.EmployementStatus)</td>
+                                <td>@Html.DisplayFor(modelItem => employee.SalaryOutput)</td>
+                                <td>@Html.DisplayFor(modelItem => employee.RegisteredAt)</td>
+                                <td>@Html.DisplayFor(modelItem => employee.IsActive)</td>
+                                <td>
+                                    @Html.ActionLink("Details", "UserDetails", new { userId = employee.Id }, new { @class = "btn btn-outline-secondary green-btn-sm" })
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "EditUser", new { userId = employee.Id }, new { @class = "btn btn-outline-secondary darkOrange-btn-sm" })
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Delete", "DeleteUser", new { userId = employee.Id, isCustomer = false }, new { @class = "btn btn-outline-secondary darkRed-btn-sm" })
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
